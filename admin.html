@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Xiva shahar 1-son ixtisoslashtirilgan maktab-internati</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin-style.css') }}">
+    <link rel="stylesheet" href="./admin-style.css">
+</head>
+<body>
+    <!-- Login Modal (Initially visible) -->
+    <div class="modal fade show" id="loginModal" tabindex="-1" style="display: block;" data-bs-backdrop="static">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fas fa-shield-alt me-2"></i>
+                        Admin Panel Kirish
+                    </h5>
+                </div>
+                <div class="modal-body">
+                    <form id="loginForm">
+                        <div class="mb-3">
+                            <label for="username" class="form-label">
+                                <i class="fas fa-user me-2"></i>Foydalanuvchi nomi
+                            </label>
+                            <input type="text" class="form-control" id="username" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">
+                                <i class="fas fa-lock me-2"></i>Parol
+                            </label>
+                            <input type="password" class="form-control" id="password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">
+                            <i class="fas fa-sign-in-alt me-2"></i>Kirish
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard (Initially hidden) -->
+    <div id="adminDashboard" style="display: none;">
+        <!-- Header -->
+        <nav class="navbar navbar-expand-lg navbar-dark admin-navbar">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <i class="fas fa-cogs me-2"></i>
+                    Admin Panel
+                </a>
+                
+                <div class="d-flex align-items-center">
+                    <span class="text-white me-3">
+                        <i class="fas fa-user-circle me-2"></i>
+                        Admin
+                    </span>
+                    <button class="btn btn-outline-light btn-sm" onclick="logout()">
+                        <i class="fas fa-sign-out-alt me-2"></i>Chiqish
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <div class="admin-container">
+            <!-- Sidebar -->
+            <nav class="sidebar">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#" onclick="showSection('dashboard')">
+                            <i class="fas fa-tachometer-alt"></i>
+                            Bosh sahifa
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showSection('students')">
+                            <i class="fas fa-user-graduate"></i>
+                            O'quvchilar
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showSection('teachers')">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                            O'qituvchilar
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showSection('achievements')">
+                            <i class="fas fa-trophy"></i>
+                            Yutuqlar
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showSection('news')">
+                            <i class="fas fa-newspaper"></i>
+                            Yangiliklar
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showSection('contacts')">
+                            <i class="fas fa-envelope"></i>
+                            Xabarlar
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showSection('settings')">
+                            <i class="fas fa-cog"></i>
+                            Sozlamalar
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- Main Content -->
+            <main class="main-content">
+                <!-- Dashboard Section -->
+                <div id="dashboard-section" class="content-section active">
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                        <h1 class="h2">Boshqaruv paneli</h1>
+                    </div>
+
+                    <!-- Stats Cards -->
+                    <div class="row mb-4">
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card stat-card bg-primary text-white">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between">
+                                        <div>
+                                            <div class="text-white-50 small">O'quvchilar</div>
+                                            <div class="text-lg fw-bold">850</div>
+                                        </div>
+                                        <div class="fa-3x text-white-25">
+                                            <i class="fas fa-user-graduate"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card stat-card bg-success text-white">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between">
+                                        <div>
+                                            <div class="text-white-50 small">O'qituvchilar</div>
+                                            <div class="text-lg fw-bold">75</div>
+                                        </div>
+                                        <div class="fa-3x text-white-25">
+                                            <i class="fas fa-chalkboard-teacher"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card stat-card bg-warning text-white">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between">
+                                        <div>
+                                            <div class="text-white-50 small">Yutuqlar</div>
+                                            <div class="text-lg fw-bold">127</div>
+                                        </div>
+                                        <div class="fa-3x text-white-25">
+                                            <i class="fas fa-trophy"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card stat-card bg-danger text-white">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between">
+                                        <div>
+                                            <div class="text-white-50 small">Yangiliklar</div>
+                                            <div class="text-lg fw-bold">24</div>
+                                        </div>
+                                        <div class="fa-3x text-white-25">
+                                            <i class="fas fa-newspaper"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions -->
+                    <div class="row">
+                        <div class="col-lg-8 mb-4">
+                            <div class="card">
+                                <div class="card-header">
+                                    <i class="fas fa-chart-line me-2"></i>
+                                    So'nggi faollik
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>Faollik</th>
+                                                    <th>Vaqt</th>
+                                                    <th>Holat</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Yangi yutuq qo'shildi</td>
+                                                    <td>5 daqiqa oldin</td>
+                                                    <td><span class="badge bg-success">Muvaffaqiyatli</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>O'qituvchi ma'lumotlari yangilandi</td>
+                                                    <td>15 daqiqa oldin</td>
+                                                    <td><span class="badge bg-info">Yangilandi</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Yangilik nashr etildi</td>
+                                                    <td>1 soat oldin</td>
+                                                    <td><span class="badge bg-primary">Nashr etildi</span></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 mb-4">
+                            <div class="card">
+                                <div class="card-header">
+                                    <i class="fas fa-tasks me-2"></i>
+                                    Tezkor amallar
+                                </div>
+                                <div class="card-body">
+                                    <div class="d-grid gap-2">
+                                        <button class="btn btn-primary" onclick="showSection('students')">
+                                            <i class="fas fa-user-plus me-2"></i>Yangi o'quvchi
+                                        </button>
+                                        <button class="btn btn-success" onclick="showSection('achievements')">
+                                            <i class="fas fa-trophy me-2"></i>Yutuq qo'shish
+                                        </button>
+                                        <button class="btn btn-info" onclick="showSection('news')">
+                                            <i class="fas fa-plus me-2"></i>Yangilik yozish
+                                        </button>
+                                        <button class="btn btn-warning" onclick="showSection('contacts')">
+                                            <i class="fas fa-envelope me-2"></i>Xabarlarni ko'rish
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Students Section -->
+                <div id="students-section" class="content-section">
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                        <h1 class="h2">O'quvchilar boshqaruvi</h1>
+                        <button class="btn btn-primary" onclick="showAddStudentModal()">
+                            <i class="fas fa-user-plus me-2"></i>Yangi o'quvchi
+                        </button>
+                    </div>
+
+                    <!-- Search and Filter -->
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" id="studentSearch" placeholder="O'quvchi qidirish...">
+                        </div>
+                        <div class="col-md-3">
+                            <select class="form-select" id="classFilter">
+                                <option value="">Barcha sinflar</option>
+                                <option value="9">9-sinf</option>
+                                <option value="10">10-sinf</option>
+                                <option value="11">11-sinf</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <select class="form-select" id="statusFilter">
+                                <option value="">Barcha holatlar</option>
+                                <option value="active">Faol</option>
+                                <option value="graduated">Bitirgan</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Students Table -->
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover" id="studentsTable">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Ism Familiya</th>
+                                            <th>Sinf</th>
+                                            <th>Telefon</th>
+                                            <th>Holat</th>
+                                            <th>Amallar</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>001</td>
+                                            <td>Ahmad Karimov</td>
+                                            <td>11-A</td>
+                                            <td>+998 90 123 45 67</td>
+                                            <td><span class="badge bg-success">Faol</span></td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-primary">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-danger">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>002</td>
+                                            <td>Malika Toshmatova</td>
+                                            <td>10-B</td>
+                                            <td>+998 91 234 56 78</td>
+                                            <td><span class="badge bg-success">Faol</span></td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-primary">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-danger">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Teachers Section -->
+                <div id="teachers-section" class="content-section">
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                        <h1 class="h2">O'qituvchilar boshqaruvi</h1>
+                        <button class="btn btn-primary" onclick="showAddTeacherModal()">
+                            <i class="fas fa-user-plus me-2"></i>Yangi o'qituvchi
+                        </button>
+                    </div>
+
+                    <!-- Teachers Grid -->
+                    <div class="row" id="teachersGrid">
+                        <div class="col-lg-4 col-md-6 mb-4">
+                            <div class="card teacher-card">
+                                <div class="card-body text-center">
+                                    <div class="teacher-avatar mb-3">
+                                        <i class="fas fa-user-tie fa-3x"></i>
+                                    </div>
+                                    <h5 class="card-title">Aziz Normatov</h5>
+                                    <p class="card-text text-muted">Matematika</p>
+                                    <div class="mb-2">
+                                        <span class="badge bg-primary">10 yil tajriba</span>
+                                    </div>
+                                    <div class="btn-group" role="group">
+                                        <button class="btn btn-sm btn-outline-primary">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-info">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-danger">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 mb-4">
+                            <div class="card teacher-card">
+                                <div class="card-body text-center">
+                                    <div class="teacher-avatar mb-3">
+                                        <i class="fas fa-user-tie fa-3x"></i>
+                                    </div>
+                                    <h5 class="card-title">Nilufar Rahimova</h5>
+                                    <p class="card-text text-muted">Fizika</p>
+                                    <div class="mb-2">
+                                        <span class="badge bg-success">8 yil tajriba</span>
+                                    </div>
+                                    <div class="btn-group" role="group">
+                                        <button class="btn btn-sm btn-outline-primary">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-info">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-danger">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Achievements Section -->
+                <div id="achievements-section" class="content-section">
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                        <h1 class="h2">Yutuqlar boshqaruvi</h1>
+                        <button class="btn btn-primary" onclick="showAddAchievementModal()">
+                            <i class="fas fa-trophy me-2"></i>Yangi yutuq
+                        </button>
+                    </div>
+
+                    <!-- Achievement Categories -->
+                    <div class="row mb-4">
+                        <div class="col-md-3">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <i class="fas fa-medal fa-2x text-warning mb-2"></i>
+                                    <h5>Olimpiadalar</h5>
+                                    <p class="text-muted">45 yutuq</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <i class="fas fa-certificate fa-2x text-info mb-2"></i>
+                                    <h5>Sertifikatlar</h5>
+                                    <p class="text-muted">32 yutuq</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <i class="fas fa-robot fa-2x text-primary mb-2"></i>
+                                    <h5>Robocontest</h5>
+                                    <p class="text-muted">12 yutuq</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <i class="fas fa-award fa-2x text-success mb-2"></i>
+                                    <h5>Boshqa</h5>
+                                    <p class="text-muted">38 yutuq</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Achievements Table -->
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fas fa-list me-2"></i>Barcha yutuqlar
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>O'quvchi</th>
+                                            <th>Yutuq turi</th>
+                                            <th>O'rin</th>
+                                            <th>Sana</th>
+                                            <th>Amallar</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Ahmad Karimov</td>
+                                            <td>Matematika olimpiadasi</td>
+                                            <td><span class="badge bg-warning">1-o'rin</span></td>
+                                            <td>2024-03-15</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-primary">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-danger">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- News Section -->
+                <div id="news-section" class="content-section">
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                        <h1 class="h2">Yangiliklar boshqaruvi</h1>
+                        <button class="btn btn-primary" onclick="showAddNewsModal()">
+                            <i class="fas fa-plus me-2"></i>Yangi xabar
+                        </button>
+                    </div>
+
+                    <!-- News Editor -->
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <i class="fas fa-edit me-2"></i>Yangilik yozish
+                        </div>
+                        <div class="card-body">
+                            <form id="newsForm">
+                                <div class="mb-3">
+                                    <label for="newsTitle" class="form-label">Sarlavha</label>
+                                    <input type="text" class="form-control" id="newsTitle" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="newsContent" class="form-label">Matn</label>
+                                    <textarea class="form-control" id="newsContent" rows="6" required></textarea>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="newsCategory" class="form-label">Kategoriya</label>
+                                        <select class="form-select" id="newsCategory">
+                                            <option value="general">Umumiy</option>
+                                            <option value="achievement">Yutuqlar</option>
+                                            <option value="event">Tadbirlar</option>
+                                            <option value="announcement">E'lonlar</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="newsStatus" class="form-label">Holat</label>
+                                        <select class="form-select" id="newsStatus">
+                                            <option value="draft">Qoralama</option>
+                                            <option value="published">Nashr etilgan</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="mt-3">
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fas fa-save me-2"></i>Saqlash
+                                    </button>
+                                    <button type="button" class="btn btn-outline-secondary" onclick="clearNewsForm()">
+                                        <i class="fas fa-times me-2"></i>Tozalash
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Published News -->
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fas fa-newspaper me-2"></i>Nashr etilgan yangiliklar
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h6 class="card-title">Matematika olimpiadasida yutuq</h6>
+                                            <p class="card-text small text-muted">Maktabimiz o'quvchilari respublika bosqichida...</p>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <small class="text-muted">2024-03-15</small>
+                                                <div>
+                                                    <button class="btn btn-sm btn-outline-primary">
+                                                        <i class="fas fa-edit"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-danger">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contacts Section -->
+                <div id="contacts-section" class="content-section">
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                        <h1 class="h2">Xabarlar</h1>
+                        <button class="btn btn-outline-primary" onclick="refreshContacts()">
+                            <i class="fas fa-sync me-2"></i>Yangilash
+                        </button>
+                    </div>
+
+                    <!-- Message Stats -->
+                    <div class="row mb-4">
+                        <div class="col-md-4">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <i class="fas fa-envelope fa-2x text-primary mb-2"></i>
+                                    <h5>Jami xabarlar</h5>
+                                    <h3 class="text-primary">47</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <i class="fas fa-envelope-open fa-2x text-success mb-2"></i>
+                                    <h5>O'qilgan</h5>
+                                    <h3 class="text-success">32</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <i class="fas fa-envelope fa-2x text-warning mb-2"></i>
+                                    <h5>Yangi</h5>
+                                    <h3 class="text-warning">15</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Messages Table -->
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fas fa-inbox me-2"></i>Xabarlar ro'yxati
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Holat</th>
+                                            <th>Yuboruvchi</th>
+                                            <th>Email</th>
+                                            <th>Mavzu</th>
+                                            <th>Sana</th>
+                                            <th>Amallar</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="table-warning">
+                                            <td><i class="fas fa-circle text-warning"></i></td>
+                                            <td>Oybek Toshmatov</td>
+                                            <td>oybek@email.com</td>
+                                            <td>Qabul haqida savol</td>
+                                            <td>2024-03-20</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-primary" onclick="viewMessage(1)">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-success">
+                                                    <i class="fas fa-reply"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-danger">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><i class="fas fa-circle text-success"></i></td>
+                                            <td>Malika Karimova</td>
+                                            <td>malika@email.com</td>
+                                            <td>Maktab haqida ma'lumot</td>
+                                            <td>2024-03-19</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-primary" onclick="viewMessage(2)">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-success">
+                                                    <i class="fas fa-reply"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-danger">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Settings Section -->
+                <div id="settings-section" class="content-section">
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                        <h1 class="h2">Sozlamalar</h1>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <!-- General Settings -->
+                            <div class="card mb-4">
+                                <div class="card-header">
+                                    <i class="fas fa-cog me-2"></i>Umumiy sozlamalar
+                                </div>
+                                <div class="card-body">
+                                    <form id="settingsForm">
+                                        <div class="mb-3">
+                                            <label for="schoolName" class="form-label">Maktab nomi</label>
+                                            <input type="text" class="form-control" id="schoolName" 
+                                                   value="Xiva shahar 1-son ixtisoslashtirilgan maktab-internati">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="schoolAddress" class="form-label">Manzil</label>
+                                            <input type="text" class="form-control" id="schoolAddress" 
+                                                   value="Xorazm viloyati, Xiva shahri">
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="schoolPhone" class="form-label">Telefon</label>
+                                                <input type="tel" class="form-control" id="schoolPhone" 
+                                                       value="+998 62 375-12-34">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="schoolEmail" class="form-label">Email</label>
+                                                <input type="email" class="form-control" id="schoolEmail" 
+                                                       value="info@khiva-school.uz">
+                                            </div>
+                                        </div>
+                                        <div class="mt-3">
+                                            <button type="submit" class="btn btn-primary">
+                                                <i class="fas fa-save me-2"></i>Saqlash
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <!-- Social Media Settings -->
+                            <div class="card mb-4">
+                                <div class="card-header">
+                                    <i class="fas fa-share-alt me-2"></i>Ijtimoiy tarmoq havolalari
+                                </div>
+                                <div class="card-body">
+                                    <div class="mb-3">
+                                        <label for="instagramUrl" class="form-label">
+                                            <i class="fab fa-instagram text-danger me-2"></i>Instagram
+                                        </label>
+                                        <input type="url" class="form-control" id="instagramUrl" 
+                                               placeholder="https://instagram.com/...">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="telegramUrl" class="form-label">
+                                            <i class="fab fa-telegram text-primary me-2"></i>Telegram
+                                        </label>
+                                        <input type="url" class="form-control" id="telegramUrl" 
+                                               placeholder="https://t.me/...">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="youtubeUrl" class="form-label">
+                                            <i class="fab fa-youtube text-danger me-2"></i>YouTube
+                                        </label>
+                                        <input type="url" class="form-control" id="youtubeUrl" 
+                                               placeholder="https://youtube.com/...">
+                                    </div>
+                                    <button type="button" class="btn btn-primary" onclick="saveSocialMedia()">
+                                        <i class="fas fa-save me-2"></i>Saqlash
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <!-- Admin Account Settings -->
+                            <div class="card mb-4">
+                                <div class="card-header">
+                                    <i class="fas fa-user me-2"></i>Admin hisob qaydnoması
+                                </div>
+                                <div class="card-body">
+                                    <div class="mb-3">
+                                        <label for="adminUsername" class="form-label">Foydalanuvchi nomi</label>
+                                        <input type="text" class="form-control" id="adminUsername" value="admin">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="currentPassword" class="form-label">Joriy parol</label>
+                                        <input type="password" class="form-control" id="currentPassword">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="newPassword" class="form-label">Yangi parol</label>
+                                        <input type="password" class="form-control" id="newPassword">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="confirmPassword" class="form-label">Parolni tasdiqlash</label>
+                                        <input type="password" class="form-control" id="confirmPassword">
+                                    </div>
+                                    <button type="button" class="btn btn-warning w-100" onclick="changePassword()">
+                                        <i class="fas fa-key me-2"></i>Parolni o'zgartirish
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- System Info -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <i class="fas fa-info me-2"></i>Tizim ma'lumotlari
+                                </div>
+                                <div class="card-body">
+                                    <p><strong>Versiya:</strong> 1.0.0</p>
+                                    <p><strong>So'nggi yangilanish:</strong> 2024-03-20</p>
+                                    <p><strong>Faol sessiyalar:</strong> 3</p>
+                                    <p><strong>Tizim holati:</strong> <span class="badge bg-success">Ishlaydi</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='admin-script.js') }}"></script>
+    <script src="./admin-script.js"></script>
+</body>
+</html>
