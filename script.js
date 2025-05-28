@@ -1,3 +1,6 @@
+
+
+
 // Initialize AOS (Animate On Scroll)
 document.addEventListener('DOMContentLoaded', function() {
     AOS.init({
@@ -68,47 +71,65 @@ function initializeNavigation() {
 }
 
 // Contact form handling
-function initializeContactForm() {
-    const contactForm = document.getElementById('contactForm');
-    
-    if (contactForm) {
-        contactForm.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const submitBtn = contactForm.querySelector('button[type="submit"]');
-            const originalText = submitBtn.innerHTML;
-            
-            // Show loading state
-            submitBtn.innerHTML = '<span class="spinner"></span>Yuborilmoqda...';
-            submitBtn.disabled = true;
-            
-            try {
-                const formData = new FormData(contactForm);
-                
-                const response = await fetch('/contact', {
-                    method: 'POST',
-                    body: formData
-                });
-                
-                const result = await response.json();
-                
-                if (result.status === 'success') {
-                    showNotification(result.message, 'success');
-                    contactForm.reset();
-                } else {
-                    showNotification(result.message, 'error');
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                showNotification('Xatolik yuz berdi. Iltimos, qaytadan urinib ko\'ring.', 'error');
-            } finally {
-                // Reset button state
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-            }
-        });
+
+const TELEGRAM_BOT_TOKEN = '7147444711:AAHnNrhj3G_2RegJkkmpBs5nbLXl49G8TQ0';
+  const TELEGRAM_CHAT_ID = '5717695158'; // Sizning chat ID'ingiz
+
+  const contactForm = document.getElementById('contactForm');
+  const notificationBox = document.getElementById('notification');
+
+  contactForm.addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const submitBtn = contactForm.querySelector('button[type="submit"]');
+    const originalText = submitBtn.innerHTML;
+
+    submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Yuborilmoqda...';
+    submitBtn.disabled = true;
+
+    const formData = new FormData(contactForm);
+    const name = formData.get('name');
+    const email = formData.get('email');
+    const message = formData.get('message');
+
+    const text = `<b>📬 Yangi xabar</b>\n\n👤 Ism: ${name}\n📧 Email: ${email}\n💬 Xabar:\n${message}`;
+
+    try {
+      const response = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          chat_id: TELEGRAM_CHAT_ID,
+          text: text,
+          parse_mode: 'HTML'
+        })
+      });
+
+      const result = await response.json();
+
+      if (result.ok) {
+        showNotification('✅ Xabaringiz muvaffaqiyatli yuborildi!', 'success');
+        contactForm.reset();
+      } else {
+        showNotification('❌ Xatolik yuz berdi. Yuborib bo‘lmadi.', 'danger');
+      }
+    } catch (error) {
+      console.error(error);
+      showNotification('❌ Serverga ulanib bo‘lmadi.', 'danger');
+    } finally {
+      submitBtn.innerHTML = originalText;
+      submitBtn.disabled = false;
     }
-}
+  });
+
+  function showNotification(message, type) {
+    notificationBox.innerHTML = `<div class="alert alert-${type}" role="alert">${message}</div>`;
+    setTimeout(() => {
+      notificationBox.innerHTML = '';
+    }, 4000);
+  }
 
 // Notification system
 function showNotification(message, type = 'info') {
