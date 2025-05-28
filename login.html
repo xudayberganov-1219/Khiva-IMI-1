@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Panel - Khiva IMI</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="admin.css"/>
+  <style>
+    .login-wrapper {
+      max-width: 400px;
+      margin: 100px auto;
+      padding: 30px;
+      background: white;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      border-radius: 10px;
+      text-align: center;
+    }
+    .hidden {
+      display: none;
+    }
+    input {
+      padding: 10px;
+      width: 100%;
+      margin-bottom: 10px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+    }
+    button {
+      padding: 10px;
+      width: 100%;
+      background-color: #1e3a8a;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #2563eb;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Login Panel -->
+  <div id="login" class="login-wrapper">
+    <h2>Admin Kirish</h2>
+    <input type="text" id="username" placeholder="Login" required>
+    <input type="password" id="password" placeholder="Parol" required>
+    <button onclick="checkLogin()">Kirish</button>
+    <p id="login-error" style="color:red; display:none;">❌ Login yoki parol noto‘g‘ri</p>
+  </div>
+
+  <!-- Admin Panel -->
+  <div id="admin-panel" class="hidden">
+    <header>
+      <nav class="navbar">
+        <div class="logo">Khiva<span>Admin</span></div>
+      </nav>
+    </header>
+
+    <main class="admin-main">
+      <h2>Yangilik qo'shish</h2>
+      <form id="news-form">
+        <input type="text" id="title" placeholder="Sarlavha" required/>
+        <textarea id="content" placeholder="Yangilik matni..." required></textarea>
+        <button type="submit">Saqlash</button>
+      </form>
+    </main>
+  </div>
+
+  <script type="module" src="firebase-config.js"></script>
+  <script type="module" src="admin.js"></script>
+
+  <script>
+    function checkLogin() {
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value.trim();
+  
+      if (username === 'Mr.Xudayberganov' && password === '1021092010') {
+        // Sahifani admin.html ga yo'naltirish
+        window.location.href = "admin.html";
+      } else {
+        document.getElementById('login-error').style.display = 'block';
+      }
+    }
+  </script>
+  
+  
+</body>
+</html>
