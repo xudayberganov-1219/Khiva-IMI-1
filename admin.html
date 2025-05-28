@@ -6,60 +6,177 @@
   <title>Admin Panel - Khiva IMI</title>
   <link rel="stylesheet" href="style.css"/>
   <link rel="stylesheet" href="admin.css"/>
-  <!-- HEAD tag ichida -->
-  <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
+  <style>
+    /* Yorqin dizayn */
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #f4f4fc, #e0f7fa);
+      margin: 0;
+      padding: 0;
+      color: #2d3436;
+    }
 
+    .login-wrapper {
+      max-width: 400px;
+      margin: 100px auto;
+      padding: 30px;
+      background: white;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      border-radius: 20px;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .login-wrapper:hover {
+      transform: translateY(-5px);
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      font-size: 1.8rem;
+      color: #0069c0;
+    }
+
+    input {
+      padding: 12px 16px;
+      width: 100%;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-size: 1rem;
+      background-color: #f9f9f9;
+      transition: all 0.3s ease;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #00bfa5;
+      background-color: #e0fff9;
+      box-shadow: 0 0 0 3px rgba(0, 191, 169, 0.2);
+    }
+
+    button {
+      padding: 12px;
+      width: 100%;
+      font-size: 1rem;
+      font-weight: bold;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      background: linear-gradient(to right, #00bfa5, #009688);
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background: linear-gradient(to right, #009688, #00bfa5);
+      transform: translateY(-2px);
+    }
+
+    #login-error {
+      color: #ff4d4d;
+      display: none;
+      margin-top: 10px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    /* Navbar */
+    header {
+      background: #00796b;
+      padding: 15px 20px;
+      color: white;
+    }
+
+    .navbar .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .navbar .logo span {
+      color: #00e676;
+    }
+
+    main.admin-main {
+      max-width: 700px;
+      margin: 40px auto;
+      padding: 30px;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+
+    main.admin-main h2 {
+      margin-bottom: 25px;
+      color: #00796b;
+      font-size: 2rem;
+      text-align: center;
+    }
+
+    #news-form textarea {
+      resize: vertical;
+      min-height: 120px;
+      padding: 16px;
+      font-size: 1rem;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      background-color: #f9f9f9;
+      transition: all 0.3s ease;
+    }
+
+    #news-form textarea:focus {
+      border-color: #00bfa5;
+      background-color: #e0fff9;
+      box-shadow: 0 0 0 3px rgba(0, 191, 169, 0.2);
+    }
+  </style>
 </head>
 <body>
-  
-  <header>
-    <nav class="navbar">
-      <div class="logo">Khiva<span>Admin</span></div>
-    </nav>
-  </header>
 
-  <main class="admin-main">
-    
-    <h2>Yangilik qo'shish</h2>
-    <form id="news-form">
-      <input type="text" id="title" placeholder="Sarlavha" required/>
-      <textarea id="content" placeholder="Yangilik matni..." required></textarea>
-      <!-- Textarea oldidan yoki ichida -->
-      <button type="button" id="emojiBtn">😊</button>
-      <!-- Textarea tagidan keyin joylashtiring -->
-      <emoji-picker id="emojiPicker" style="display: none; position: absolute; z-index: 999;"></emoji-picker>
+  <!-- Login Panel -->
+  <div id="login" class="login-wrapper">
+    <h2>Admin Kirish</h2>
+    <input type="text" id="username" placeholder="Login" required>
+    <input type="password" id="password" placeholder="Parol" required>
+    <button onclick="checkLogin()">Kirish</button>
+    <p id="login-error" style="color:red; display:none;">❌ Login yoki parol noto‘g‘ri</p>
+  </div>
 
-      <button type="submit">Saqlash</button>
-    </form>
-  </main>
+  <!-- Admin Panel -->
+  <div id="admin-panel" class="hidden">
+    <header>
+      <nav class="navbar">
+        <div class="logo">Khiva<span>Admin</span></div>
+      </nav>
+    </header>
+
+    <main class="admin-main">
+      <h2>Yangilik qo'shish</h2>
+      <form id="news-form">
+        <input type="text" id="title" placeholder="Sarlavha" required/>
+        <textarea id="content" placeholder="Yangilik matni..." required></textarea>
+        <button type="submit">Saqlash</button>
+      </form>
+    </main>
+  </div>
 
   <script type="module" src="firebase-config.js"></script>
   <script type="module" src="admin.js"></script>
+
   <script>
-    const emojiBtn = document.getElementById('emojiBtn');
-    const emojiPicker = document.getElementById('emojiPicker');
-    const textarea = document.getElementById('content');
-  
-    // Tugma bosilganda picker ko‘rinadi
-    emojiBtn.addEventListener('click', () => {
-      const rect = emojiBtn.getBoundingClientRect();
-      emojiPicker.style.display = emojiPicker.style.display === 'none' ? 'block' : 'none';
-      emojiPicker.style.top = `${rect.bottom + window.scrollY}px`;
-      emojiPicker.style.left = `${rect.left + window.scrollX}px`;
-    });
-  
-    // Emoji tanlanganda textarea ga qo‘shiladi
-    emojiPicker.addEventListener('emoji-click', event => {
-      const emoji = event.detail.unicode;
-      textarea.value += emoji;
-      textarea.focus();
-    });
-  
-    // Form yuborilganda pickerni yopamiz
-    document.getElementById('news-form').addEventListener('submit', () => {
-      emojiPicker.style.display = 'none';
-    });
+    function checkLogin() {
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value.trim();
+
+      if (username === 'Mr.Xudayberganov' && password === '1021092010') {
+        window.location.href = "admin.html";
+      } else {
+        document.getElementById('login-error').style.display = 'block';
+      }
+    }
   </script>
-  
+
 </body>
 </html>
