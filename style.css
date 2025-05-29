@@ -168,6 +168,140 @@ section {
     box-shadow: var(--shadow-md);
 }
 
+/* DARK MODE - Mutlaq qora fon bilan */
+[data-theme="default"] body {
+    --background: 0 0% 0%;         /* Mutlaq qora fon */
+    --surface: 0 0% 5%;             /* Biroz ochiqroq sirt (kartalar, sektsiyalar) */
+    --text-primary: 0 0% 95%;       /* Oqish matn */
+    --text-secondary: 0 0% 70%;     /* Ochiq kulrang ikkinchi darajali matn */
+    --text-light: 0 0% 60%;         /* Yorqin emas lekin ko'rinadigan matn */
+    --accent-color: 60 100% 80%;    /* Sariq rang (tugmalar, sarlavhalar uchun) */
+
+    background-color: hsl(var(--background));
+    color: hsl(var(--text-primary));
+}
+
+/* Navbar dark mode */
+:root[data-theme="default"] {
+    --surface: 220, 13%, 18%;        /* Asosiy fon */
+    --background: 220, 16%, 23%;     /* Karta/komponent fon */
+    --text-primary: 0, 0%, 95%;      /* Oqish matn */
+    --accent-color: 210, 90%, 60%;   /* Yorqin ko‘k */
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* ===== Navbar ===== */
+[data-theme="default"] .navbar {
+   background: hsl(var(--surface)) !important;
+    box-shadow: var(--shadow-md);
+    color: hsl(var(--text-primary));
+    border-bottom: 2px solid hsl(var(--primary)) !important;;
+    
+}
+
+/* ===== Sektsiyalar ===== */
+[data-theme="default"] .hero-section,
+[data-theme="default"] .about-section,
+[data-theme="default"] .achievements-section,
+[data-theme="default"] .teachers-section,
+[data-theme="default"] .news-section,
+[data-theme="default"] .contact-section,
+[data-theme="default"] .footer {
+    background: hsl(var(--surface));
+    color: hsl(var(--text-primary));
+}
+
+/* ===== Kartalar / Formalar ===== */
+[data-theme="default"] .card,
+[data-theme="default"] .stat-card,
+[data-theme="default"] .teacher-card,
+[data-theme="default"] .achievement-card,
+[data-theme="default"] .certificate-card,
+[data-theme="default"] .news-card,
+[data-theme="default"] .contact-form {
+    background: hsl(var(--background));
+    color: hsl(var(--text-primary));
+    box-shadow: var(--shadow-md);
+    border-radius: 12px;
+}
+
+/* ===== Navlinklar / Outline tugmalar ===== */
+[data-theme="default"] .nav-link,
+[data-theme="default"] .btn-outline-primary {
+    color: hsl(var(--text-primary)) !important;
+    border-color: hsl(var(--text-primary)) !important;
+}
+
+/* ===== Accent elementlar ===== */
+[data-theme="default"] .section-title::after,
+[data-theme="default"] .btn-primary,
+[data-theme="default"] .medal-ribbon,
+[data-theme="default"] .expert-badge {
+    background: hsl(var(--accent-color));
+    color: rgb(179, 11, 11);
+}
+
+/* ===== Jadval ===== */
+[data-theme="default"] table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 10px;
+    overflow: hidden;
+    font-family: 'Segoe UI', sans-serif;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Jadval Sarlavhalari (th) */
+[data-theme="default"] table th {
+    background: linear-gradient(90deg, #FFD700, #FF8C00); /* Sariq - olov */
+    color: #000;
+    padding: 1rem;
+    text-align: left;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+/* Jadval kataklari (td) */
+[data-theme="default"] table td {
+    background-color: #1a1a1a; /* Qoraroq fon */
+    color: hsl(45, 30%, 78%);  /* Yumshoq sariq */
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #333;
+    transition: background 0.3s;
+}
+
+/* Jadval Hover effekt */
+[data-theme="default"] table tr:hover td {
+    background-color: #2a2a2a;
+}
+
+/* ===== "Batafsil" va boshqa qahramon tugmalar ===== */
+[data-theme="default"] .hero-buttons,
+[data-theme="default"] .hero-buttons button {
+    background: linear-gradient(90deg, #FFD700, #FFA500); /* Sariqdan to orange */
+    color: red;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(255, 215, 0, 0.3);
+    transition: all 0.3s ease;
+    display: inline-block;
+    text-align: center;
+}
+
+[data-theme="default"] .hero-buttons:hover,
+[data-theme="default"] .hero-buttons:hover {
+    background: linear-gradient(90deg, #FFC107, #FF9800);
+    transform: scale(1.03);
+    box-shadow: 0 6px 15px rgba(255, 193, 7, 0.4);
+}
+
+[data-theme="default"] section{
+    border: 2px solid #FFA500;
+    border-radius: 12px;
+    margin-bottom: 10px;
+}
 /* Hero Section */
 .hero-section {
     min-height: 100vh;
@@ -780,6 +914,7 @@ section {
 .contact-details h5 {
     font-weight: 600;
     margin-bottom: 0.5rem;
+    
     color: hsl(var(--text-primary));
 }
 
@@ -940,6 +1075,7 @@ section {
     .tabble{
         display: none;
     }
+   
 }
 
 @media (max-width: 576px) {
