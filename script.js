@@ -29,7 +29,7 @@ function initializeNavigation() {
     window.addEventListener('scroll', function() {
         if (window.scrollY > 100) {
             navbar.classList.add('navbar-scrolled');
-            navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+            navbar.style.background = 'white';
             navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
         } else {
             navbar.classList.remove('navbar-scrolled');
@@ -699,4 +699,44 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-console.log('Xiva Maktab-Internati website JavaScript loaded successfully!');
+
+// Initialize theme switching
+function initializeTheme() {
+    const savedTheme = localStorage.getItem('theme') || 'default';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+
+    // Update button text based on saved theme
+    const themeBtn = document.getElementById('themeToggle');
+    if (!themeBtn) return;
+
+    if (savedTheme === 'light') {
+        themeBtn.innerHTML = '<i class="fas fa-moon me-2"></i>Tungi Ko\'rinish';
+    } else {
+        themeBtn.innerHTML = '<i class="fas fa-sun me-2"></i>Kunduzgi Ko\'rinish';
+    }
+}
+
+// Toggle theme function
+function toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+    const newTheme = currentTheme === 'light' ? 'default' : 'light';
+
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+
+    const themeBtn = document.getElementById('themeToggle');
+    if (newTheme === 'light') {
+        themeBtn.innerHTML = '<i class="fas fa-moon me-2"></i>Kechki Ko\'rinish';
+    } else {
+        themeBtn.innerHTML = '<i class="fas fa-sun me-2"></i>Kunduzgi Ko\'rinish';
+    }
+}
+document.addEventListener('DOMContentLoaded', function () {
+    initializeTheme(); // Initialize theme on load
+
+    const themeBtn = document.getElementById('themeToggle');
+    if (themeBtn) {
+        themeBtn.addEventListener('click', toggleTheme);
+    }
+});
+console.log('Xiva Maktab-Internati website tayyor. Xurmat ila Ilyos Xudayberganov. 29.05.2025!');
