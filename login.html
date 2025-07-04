@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maktab Portali - Kirish</title>
+  <link rel="shortcut icon" href="logo.jpg" type="image/x-icon">
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    
+    body {
+      font-family: 'Inter', 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #e0e7ff 0%, #f0f9ff 100%);
+      animation: gradientShift 12s ease infinite alternate;
+      background-size: 200% 200%;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    .card {
+      backdrop-filter: blur(12px);
+      background: rgba(255, 255, 255, 0.85);
+      box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 40px rgba(31, 38, 135, 0.2);
+    }
+    
+    .input-field {
+      transition: all 0.3s ease;
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(4px);
+      padding-left: 45px !important;
+    }
+    
+    .input-field:focus {
+      transform: scale(1.02);
+      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.15);
+      background: rgba(255, 255, 255, 0.9);
+    }
+    
+    .input-icon {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #6366f1;
+      z-index: 10;
+    }
+    
+    .logo {
+      border-radius: 50%;
+      height: 80px;
+      width: 80px;
+      object-fit: cover;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transition: all 0.5s ease;
+      filter: drop-shadow(0 2px 4px rgba(79, 70, 229, 0.3));
+    }
+    
+    .logo:hover {
+      transform: rotate(10deg) scale(1.05);
+    }
+    
+    .btn-primary {
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+      background-size: 200% 200%;
+      transition: all 0.4s ease;
+      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(79, 70, 229, 0.4);
+      background-position: 100% 50%;
+    }
+    
+    .btn-primary:active {
+      transform: translateY(0);
+    }
+    
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: rgba(75, 85, 99, 0.95);
+      backdrop-filter: blur(8px);
+      color: white;
+      padding: 14px 24px;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      z-index: 1000;
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+    
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+    
+    /* Floating animation for decorative elements */
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    .floating {
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    /* Loading spinner */
+    .spinner {
+      display: none;
+      width: 24px;
+      height: 24px;
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      border-top-color: white;
+      animation: spin 1s ease-in-out infinite;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    /* Ripple effect */
+    .ripple {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .ripple-effect {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.6);
+      transform: scale(0);
+      animation: ripple 0.6s linear;
+      pointer-events: none;
+    }
+    
+    @keyframes ripple {
+      to {
+        transform: scale(4);
+        opacity: 0;
+      }
+    }
+    
+    /* Wave animation */
+    .waves {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100px;
+      overflow: hidden;
+      z-index: -1;
+    }
+    
+    .wave {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 200%;
+      height: 100%;
+      background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" fill="%236366f1" opacity=".25"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" fill="%236366f1" opacity=".5"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" fill="%236366f1"/></svg>');
+      background-repeat: repeat no-repeat;
+      background-position: 0 bottom;
+      transform-origin: center bottom;
+      animation: wave 15s linear infinite;
+    }
+    
+    .wave:nth-child(2) {
+      animation-delay: -5s;
+      animation-duration: 20s;
+      opacity: 0.5;
+    }
+    
+    .wave:nth-child(3) {
+      animation-delay: -2s;
+      animation-duration: 25s;
+      opacity: 0.3;
+    }
+    
+    @keyframes wave {
+      0% { transform: translateX(0) translateZ(0) scaleY(1); }
+      50% { transform: translateX(-25%) translateZ(0) scaleY(0.8); }
+      100% { transform: translateX(-50%) translateZ(0) scaleY(1); }
+    }
+    
+    /* Input container */
+    .input-container {
+      position: relative;
+      margin-bottom: 1.25rem;
+    }
+    
+    /* Input error state */
+    .input-error {
+      animation: shake 0.5s ease-in-out;
+      border-color: #ef4444 !important;
+    }
+    
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-5px); }
+      40%, 80% { transform: translateX(5px); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Wave animation -->
+  <div class="waves">
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+  </div>
+
+  <!-- Floating decorative elements -->
+  <div class="fixed top-20 left-10 w-16 h-16 bg-indigo-200 rounded-full opacity-20 floating" style="animation-delay: 0s;"></div>
+  <div class="fixed bottom-1/4 right-20 w-24 h-24 bg-blue-200 rounded-full opacity-15 floating" style="animation-delay: 1s;"></div>
+  <div class="fixed top-1/3 right-1/4 w-20 h-20 bg-purple-200 rounded-full opacity-10 floating" style="animation-delay: 2s;"></div>
+  
+  <div class="card w-full max-w-lg p-8 border border-blue-50/50">
+    <div class="flex flex-col items-center mb-8">
+      <img src="./logo.jpg" alt="Maktab logosi" class="logo mb-4">
+      <h2 class="text-3xl font-bold text-center text-indigo-800">Maktab Portali</h2>
+      <p class="text-indigo-600 mt-2">Tizimga kirish</p>
+    </div>
+
+    <!-- Kirish formasi -->
+    <div id="login-form">
+      <div class="input-container">
+        <label class="block text-sm font-medium text-gray-700 mb-2">Foydalanuvchi nomi</label>
+        <div class="relative">
+          <span class="input-icon material-icons-round">person</span>
+          <input type="text" id="username" class="input-field w-full p-4 border border-gray-200 rounded-xl focus:border-indigo-300 focus:ring-2 focus:ring-indigo-100 outline-none" placeholder="IsmFamiliya"/>
+        </div>
+      </div>
+      
+      <div class="input-container">
+        <label class="block text-sm font-medium text-gray-700 mb-2">Parol</label>
+        <div class="relative">
+          <span class="input-icon material-icons-round">lock</span>
+          <input type="password" id="password" class="input-field w-full p-4 border border-gray-200 rounded-xl focus:border-indigo-300 focus:ring-2 focus:ring-indigo-100 outline-none" placeholder="Parol kiriting"/>
+          <button type="button" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-indigo-600" onclick="togglePassword()">
+            <span class="material-icons-round" id="toggleIcon">visibility_off</span>
+          </button>
+        </div>
+      </div>
+      
+      <button onclick="loginUser(event)" class="btn-primary ripple w-full py-4 rounded-xl font-semibold text-white flex items-center justify-center gap-2 mt-6">
+        <span id="btn-text">Kirish</span>
+        <span class="material-icons-round">login</span>
+        <div id="spinner" class="spinner"></div>
+      </button>
+      
+      <p class="text-center mt-6 text-sm text-gray-600">
+        Yangi foydalanuvchimisiz? 
+        <a href="./sign.html" class="text-indigo-600 font-semibold hover:underline hover:text-indigo-800 transition flex items-center justify-center gap-1">
+          <span class="material-icons-round">how_to_reg</span>
+          Ro'yxatdan o'tish
+        </a>
+      </p>
+    </div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyB2XMLYLJVxQivuZ563vwLUfaEOuNIsO14",
+      authDomain: "schooln1-226b3.firebaseapp.com",
+      projectId: "schooln1-226b3",
+      storageBucket: "schooln1-226b3.firebasestorage.app",
+      messagingSenderId: "1054581650168",
+      appId: "1:1054581650168:web:3f4eeb478b5e1676cec10d",
+      measurementId: "G-B5BLP8GYVD"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
+    // Toggle password visibility
+    function togglePassword() {
+      const passwordInput = document.getElementById("password");
+      const toggleIcon = document.getElementById("toggleIcon");
+      
+      if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        toggleIcon.textContent = "visibility";
+      } else {
+        passwordInput.type = "password";
+        toggleIcon.textContent = "visibility_off";
+      }
+    }
+
+    // Ripple effect
+    document.querySelectorAll('.ripple').forEach(button => {
+      button.addEventListener('click', function(e) {
+        e.preventDefault();
+        const rect = this.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        const ripple = document.createElement('span');
+        ripple.classList.add('ripple-effect');
+        ripple.style.left = `${x}px`;
+        ripple.style.top = `${y}px`;
+        
+        this.appendChild(ripple);
+        
+        setTimeout(() => {
+          ripple.remove();
+        }, 600);
+      });
+    });
+
+    function showToast(message, type = 'info') {
+      const toast = document.getElementById("toast");
+      toast.textContent = message;
+      
+      // Set different colors based on type
+      if (type === 'success') {
+        toast.style.background = 'rgba(16, 185, 129, 0.95)';
+      } else if (type === 'error') {
+        toast.style.background = 'rgba(239, 68, 68, 0.95)';
+      } else {
+        toast.style.background = 'rgba(75, 85, 99, 0.95)';
+      }
+      
+      toast.classList.add("show");
+      setTimeout(() => toast.classList.remove("show"), 4000);
+    }
+
+    function loginUser(event) {
+      event.preventDefault();
+      
+      const username = document.getElementById("username").value.trim().toLowerCase();
+      const password = document.getElementById("password").value;
+      const email = `${username}@schooln1.uz`;
+      
+      // Show loading state
+      const btnText = document.getElementById("btn-text");
+      const spinner = document.getElementById("spinner");
+      btnText.textContent = "Kirish...";
+      spinner.style.display = "block";
+      
+      // Reset error states
+      document.getElementById("username").classList.remove("input-error");
+      document.getElementById("password").classList.remove("input-error");
+      
+      if (!username || !password) {
+        showToast("Iltimos, barcha maydonlarni to'ldiring!", 'error');
+        
+        if (!username) {
+          document.getElementById("username").classList.add("input-error");
+        }
+        if (!password) {
+          document.getElementById("password").classList.add("input-error");
+        }
+        
+        btnText.textContent = "Kirish";
+        spinner.style.display = "none";
+        return;
+      }
+
+      auth.signInWithEmailAndPassword(email, password)
+        .then(() => {
+          showToast("🎉 Muvaffaqiyatli tizimga kirildi!", 'success');
+          setTimeout(() => window.location.href = "pupil.html", 1500);
+        })
+        .catch((error) => {
+          console.error("Xatolik:", error);
+          
+          if (error.code === 'auth/user-not-found') {
+            showToast("❌ Bunday foydalanuvchi topilmadi", 'error');
+            document.getElementById("username").classList.add("input-error");
+          } else if (error.code === 'auth/wrong-password') {
+            showToast("❌ Noto'g'ri parol kiritildi", 'error');
+            document.getElementById("password").classList.add("input-error");
+          } else if (error.code === 'auth/too-many-requests') {
+            showToast("⚠️ Kirish urinishlari chegaralandi. Iltimos, biroz kutib turing", 'error');
+          } else {
+            showToast("❌ Xatolik: " + error.message, 'error');
+          }
+          
+          btnText.textContent = "Kirish";
+          spinner.style.display = "none";
+        });
+    }
+    
+    // Allow login on Enter key press
+    document.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        loginUser(e);
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+# Robots.txt for Khiva Specialized Boarding School No. 1
+# Website: https://xivaimi1.vercel.app
+
+User-agent: *
+Allow: /
+
+# Disallow sensitive or private areas
+Disallow: /admin/
+Disallow: /private/
+Disallow: /temp/
+Disallow: /backup/
+
+# Sitemap location
+Sitemap: https://xivaimi1.vercel.app/sitemap.xml
+
+# Crawl delay for all bots (some may ignore)
+Crawl-delay: 1

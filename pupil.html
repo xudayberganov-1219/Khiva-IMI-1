@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O'quvchi Shaxsiy Kabineti - Baho Tizimi</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            animation: slideDown 0.6s ease-out;
+        }
+
+        .header h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+
+        .header p {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 1.1em;
+        }
+
+        .auth-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .auth-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .form-group input {
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-secondary {
+            background: #95a5a6;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #7f8c8d;
+            transform: translateY(-2px);
+        }
+
+        .main-content {
+            display: block;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .controls {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .controls-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            align-items: end;
+        }
+
+        .select-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .select-group label {
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .select-group select {
+            padding: 10px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            background: white;
+            transition: all 0.3s ease;
+        }
+
+        .select-group select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .grade-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            animation: slideUp 0.6s ease-out;
+        }
+
+        .grade-section h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            text-align: center;
+        }
+
+        .grade-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .grade-category {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+
+        .grade-category:hover {
+            border-color: #667eea;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .grade-category h4 {
+            color: #495057;
+            margin-bottom: 15px;
+            text-align: center;
+            font-size: 1.2em;
+        }
+
+        .fm-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .fm-input {
+            width: 100%;
+            padding: 8px;
+            border: 2px solid #dee2e6;
+            border-radius: 6px;
+            text-align: center;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .fm-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.1);
+        }
+
+        .bsb-input, .chsb-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #dee2e6;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .bsb-input:focus, .chsb-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.1);
+        }
+
+        .grade-display {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 15px;
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+
+        .total-grade {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            animation: pulse 2s infinite;
+        }
+
+        .total-grade h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 2em;
+        }
+
+        .grade-letter {
+            font-size: 4em;
+            font-weight: bold;
+            margin: 20px 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .grade-A { color: #27ae60; }
+        .grade-B { color: #3498db; }
+        .grade-C { color: #f39c12; }
+        .grade-E { color: #e74c3c; }
+
+        .calendar-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+            margin-top: 15px;
+        }
+
+        .calendar-day {
+            aspect-ratio: 1;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .calendar-day:hover {
+            background: #667eea;
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .calendar-day.marked {
+            background: #27ae60;
+            color: white;
+            border-color: #27ae60;
+        }
+
+        .user-info {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .user-info h3 {
+            color: #2c3e50;
+            margin: 0;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .grade-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .controls-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .fm-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎓 O'quvchi Shaxsiy Kabineti</h1>
+            <p>Baholaringizni boshqaring va o'z rivojlanishingizni kuzatib boring</p>
+        </div>
+
+        <!-- Asosiy kontent -->
+        <div id="mainContent" class="main-content">
+            <div class="user-info">
+                <h3 id="welcomeText">Xush kelibsiz!</h3>
+                <button class="btn btn-secondary" onclick="logout()">Chiqish</button>
+            </div>
+
+            <div class="controls">
+                <div class="controls-grid">
+                    <div class="select-group">
+                        <label for="termSelect">Chorak tanlang:</label>
+                        <select id="termSelect" onchange="loadGrades()">
+                            <option value="1">1-chorak</option>
+                            <option value="2">2-chorak</option>
+                            <option value="3">3-chorak</option>
+                            <option value="4">4-chorak</option>
+                        </select>
+                    </div>
+                    <div class="select-group">
+                        <label for="subjectSelect">Fan tanlang:</label>
+                        <select id="subjectSelect" onchange="loadGrades()">
+                            <option value="matematika">Matematika</option>
+                            <option value="fizika">Fizika</option>
+                            <option value="kimyo">Kimyo</option>
+                            <option value="biologiya">Biologiya</option>
+                            <option value="tarix">Tarix</option>
+                            <option value="adabiyot">Adabiyot</option>
+                            <option value="ingliz_tili">Ingliz tili</option>
+                            <option value="geografiya">Geografiya</option>
+                        </select>
+                    </div>
+                    
+                    <button class="btn btn-primary" onclick="saveGrades()">
+                        <span id="saveText">Saqlash</span>
+                        <span id="saveLoading" class="loading" style="display: none;"></span>
+                    </button>
+                    <button class="btn btn-primary"><a href="./index.html" style="text-decoration: none; color: white;">Orqaga qaytish</a></button>
+                </div>
+            </div>
+
+            <div class="grade-section">
+                <h3 id="currentSubjectTitle">Matematika - 1-chorak</h3>
+                <div class="grade-grid">
+                    <!-- FM (Joriy baho) -->
+                    <div class="grade-category">
+                        <h4>FM - Joriy baholar (max 10 ball)</h4>
+                        <div class="fm-grid" id="fmGrid">
+                            <!-- FM inputlari JavaScript orqali yaratiladi -->
+                        </div>
+                        <div class="grade-display">
+                            FM o'rtacha: <span id="fmAverage">0</span>/10
+                        </div>
+                    </div>
+
+                    <!-- BSB1 -->
+                    <div class="grade-category">
+                        <h4>BSB1 (max 25 ball)</h4>
+                        <input type="number" class="bsb-input" id="bsb1Input" min="0" max="25" placeholder="BSB1 bahosini kiriting" onchange="calculateTotal()">
+                        <div class="grade-display">
+                            BSB1: <span id="bsb1Display">0</span>/25
+                        </div>
+                    </div>
+
+                    <!-- BSB2 -->
+                    <div class="grade-category">
+                        <h4>BSB2 (max 25 ball)</h4>
+                        <input type="number" class="bsb-input" id="bsb2Input" min="0" max="25" placeholder="BSB2 bahosini kiriting" onchange="calculateTotal()">
+                        <div class="grade-display">
+                            BSB2: <span id="bsb2Display">0</span>/25
+                        </div>
+                    </div>
+
+                    <!-- CHSB -->
+                    <div class="grade-category">
+                        <h4>CHSB (max 40 ball)</h4>
+                        <input type="number" class="chsb-input" id="chsbInput" min="0" max="40" placeholder="CHSB bahosini kiriting" onchange="calculateTotal()">
+                        <div class="grade-display">
+                            CHSB: <span id="chsbDisplay">0</span>/40
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Umumiy baho -->
+            <div class="total-grade">
+                <h2>Umumiy natija</h2>
+                <div class="grade-letter" id="gradeLetter">-</div>
+                <div style="font-size: 1.5em; margin-bottom: 10px;">
+                    <span id="totalScore">0</span>/100 ball
+                </div>
+                <div id="gradeDescription">Baholarni kiriting</div>
+            </div>
+
+            <!-- Kalendar -->
+            <div class="calendar-section">
+                <h3>Dars kunlari kalendari</h3>
+                <p>Dars bo'lgan kunlarni belgilang</p>
+                <div class="calendar-grid" id="calendarGrid">
+                    <!-- Kalendar JavaScript orqali yaratiladi -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+        import { getFirestore, doc, setDoc, getDoc, collection } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+        import { getAuth, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
+
+        // Firebase konfiguratsiyasi
+        const firebaseConfig = {
+            apiKey: "AIzaSyB2XMLYLJVxQivuZ563vwLUfaEOuNIsO14",
+            authDomain: "schooln1-226b3.firebaseapp.com",
+            projectId: "schooln1-226b3",
+            storageBucket: "schooln1-226b3.firebasestorage.app",
+            messagingSenderId: "1054581650168",
+            appId: "1:1054581650168:web:3f4eeb478b5e1676cec10d",
+            measurementId: "G-B5BLP8GYVD"
+        };
+
+        // Firebase'ni ishga tushirish
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const auth = getAuth(app);
+
+        // Global o'zgaruvchilar
+        window.db = db;
+        window.auth = auth;
+        window.currentUser = null;
+        window.currentGrades = {};
+
+        // Sahifa yuklanganda
+        document.addEventListener('DOMContentLoaded', function() {
+            createFMInputs();
+            createCalendar();
+            
+            // Foydalanuvchi auth holatini kuzatish
+            onAuthStateChanged(auth, (user) => {
+                if (user) {
+                    // Foydalanuvchi kirgan
+                    window.currentUser = {
+                        uid: user.uid,
+                        email: user.email,
+                        name: user.displayName || user.email.split('@')[0]
+                    };
+                    
+                    document.getElementById('welcomeText').textContent = 
+                        `Xush kelibsiz, ${window.currentUser.name}!`;
+                    
+                    loadGrades();
+                } else {
+                    // Foydalanuvchi kirmagan, login sahifasiga yo'naltirish
+                    window.location.href = 'login.html';
+                }
+            });
+        });
+
+        // FM inputlarini yaratish
+        function createFMInputs() {
+            const fmGrid = document.getElementById('fmGrid');
+            fmGrid.innerHTML = '';
+            
+            for (let i = 1; i <= 10; i++) {
+                const input = document.createElement('input');
+                input.type = 'number';
+                input.className = 'fm-input';
+                input.id = `fm${i}`;
+                input.min = '0';
+                input.max = '10';
+                input.placeholder = i.toString();
+                input.addEventListener('input', calculateFMAverage);
+                fmGrid.appendChild(input);
+            }
+        }
+
+        // Kalendar yaratish
+        function createCalendar() {
+            const calendarGrid = document.getElementById('calendarGrid');
+            calendarGrid.innerHTML = '';
+            
+            // Hafta kunlari
+            const weekDays = ['Du', 'Se', 'Ch', 'Pa', 'Ju', 'Sh', 'Ya'];
+            weekDays.forEach(day => {
+                const dayHeader = document.createElement('div');
+                dayHeader.textContent = day;
+                dayHeader.style.fontWeight = 'bold';
+                dayHeader.style.textAlign = 'center';
+                dayHeader.style.padding = '10px';
+                dayHeader.style.background = '#f8f9fa';
+                dayHeader.style.borderRadius = '8px';
+                calendarGrid.appendChild(dayHeader);
+            });
+            
+            // 30 kun uchun
+            for (let i = 1; i <= 30; i++) {
+                const dayDiv = document.createElement('div');
+                dayDiv.className = 'calendar-day';
+                dayDiv.textContent = i;
+                dayDiv.onclick = () => toggleDay(i);
+                calendarGrid.appendChild(dayDiv);
+            }
+        }
+
+        // Kunni belgilash/olib tashlash
+        function toggleDay(day) {
+            const dayElement = document.querySelector(`.calendar-day:nth-child(${day + 7})`);
+            dayElement.classList.toggle('marked');
+        }
+
+        // FM o'rtachasini hisoblash
+        function calculateFMAverage() {
+            let total = 0;
+            let count = 0;
+            
+            for (let i = 1; i <= 10; i++) {
+                const input = document.getElementById(`fm${i}`);
+                const value = parseFloat(input.value);
+                if (!isNaN(value) && value > 0) {
+                    total += value;
+                    count++;
+                }
+            }
+            
+            const average = count > 0 ? (total / count).toFixed(1) : 0;
+            document.getElementById('fmAverage').textContent = average;
+            calculateTotal();
+        }
+
+        // Umumiy bahoni hisoblash
+        function calculateTotal() {
+            const fmAverage = parseFloat(document.getElementById('fmAverage').textContent) || 0;
+            const bsb1 = parseFloat(document.getElementById('bsb1Input').value) || 0;
+            const bsb2 = parseFloat(document.getElementById('bsb2Input').value) || 0;
+            const chsb = parseFloat(document.getElementById('chsbInput').value) || 0;
+            
+            // Displeylarni yangilash
+            document.getElementById('bsb1Display').textContent = bsb1;
+            document.getElementById('bsb2Display').textContent = bsb2;
+            document.getElementById('chsbDisplay').textContent = chsb;
+            
+            const total = fmAverage + bsb1 + bsb2 + chsb;
+            document.getElementById('totalScore').textContent = Math.round(total);
+            
+            // Harf bahosini aniqlash
+            let letterGrade, description, gradeClass;
+            if (total >= 86) {
+                letterGrade = 'A';
+                description = 'A\'lo - Juda yaxshi!';
+                gradeClass = 'grade-A';
+            } else if (total >= 66) {
+                letterGrade = 'B';
+                description = 'Yaxshi - Davom eting!';
+                gradeClass = 'grade-B';
+            } else if (total >= 46) {
+                letterGrade = 'C';
+                description = 'Qoniqarli - Yaxshilash kerak';
+                gradeClass = 'grade-C';
+            } else {
+                letterGrade = 'E';
+                description = 'Qoniqarsiz - Ko\'proq harakat qiling';
+                gradeClass = 'grade-E';
+            }
+            
+            const gradeLetterElement = document.getElementById('gradeLetter');
+            gradeLetterElement.textContent = letterGrade;
+            gradeLetterElement.className = `grade-letter ${gradeClass}`;
+            document.getElementById('gradeDescription').textContent = description;
+        }
+
+        // Baholarni yuklash
+        window.loadGrades = async function() {
+            if (!window.currentUser) return;
+            
+            const term = document.getElementById('termSelect').value;
+            const subject = document.getElementById('subjectSelect').value;
+            const subjectName = document.getElementById('subjectSelect').selectedOptions[0].text;
+            
+            document.getElementById('currentSubjectTitle').textContent = `${subjectName} - ${term}-chorak`;
+            
+            try {
+                const docRef = doc(window.db, 'grades', `${window.currentUser.uid}_${term}_${subject}`);
+                const docSnap = await getDoc(docRef);
+                
+                if (docSnap.exists()) {
+                    const data = docSnap.data();
+                    
+                    // FM baholarini yuklash
+                    for (let i = 1; i <= 10; i++) {
+                        const input = document.getElementById(`fm${i}`);
+                        input.value = data.fm?.[`fm${i}`] || '';
+                    }
+                    
+                    // BSB va CHSB baholarini yuklash
+                    document.getElementById('bsb1Input').value = data.bsb1 || '';
+                    document.getElementById('bsb2Input').value = data.bsb2 || '';
+                    document.getElementById('chsbInput').value = data.chsb || '';
+                    
+                    calculateFMAverage();
+                    calculateTotal();
+                } else {
+                    // Ma'lumot yo'q bo'lsa, barcha maydonlarni tozalash
+                    clearAllInputs();
+                }
+            } catch (error) {
+                console.error('Ma\'lumotlarni yuklash xatosi:', error);
+            }
+        };
+
+        // Barcha inputlarni tozalash
+        function clearAllInputs() {
+            for (let i = 1; i <= 10; i++) {
+                document.getElementById(`fm${i}`).value = '';
+            }
+            document.getElementById('bsb1Input').value = '';
+            document.getElementById('bsb2Input').value = '';
+            document.getElementById('chsbInput').value = '';
+            calculateFMAverage();
+            calculateTotal();
+        }
+
+        // Baholarni saqlash
+        window.saveGrades = async function() {
+            if (!window.currentUser) return;
+            
+            // Loading holatini ko'rsatish
+            document.getElementById('saveText').style.display = 'none';
+            document.getElementById('saveLoading').style.display = 'inline-block';
+            
+            const term = document.getElementById('termSelect').value;
+            const subject = document.getElementById('subjectSelect').value;
+            
+            try {
+                // FM baholarini yig'ish
+                const fmGrades = {};
+                for (let i = 1; i <= 10; i++) {
+                    const value = document.getElementById(`fm${i}`).value;
+                    if (value) fmGrades[`fm${i}`] = parseFloat(value);
+                }
+                
+                const gradeData = {
+                    studentId: window.currentUser.uid,
+                    studentName: window.currentUser.name,
+                    term: term,
+                    subject: subject,
+                    fm: fmGrades,
+                    bsb1: parseFloat(document.getElementById('bsb1Input').value) || 0,
+                    bsb2: parseFloat(document.getElementById('bsb2Input').value) || 0,
+                    chsb: parseFloat(document.getElementById('chsbInput').value) || 0,
+                    lastUpdated: new Date().toISOString()
+                };
+                
+                const docRef = doc(window.db, 'grades', `${window.currentUser.uid}_${term}_${subject}`);
+                await setDoc(docRef, gradeData);
+                
+                setTimeout(() => {
+                    alert('Baholar muvaffaqiyatli saqlandi!');
+                    document.getElementById('saveText').style.display = 'inline';
+                    document.getElementById('saveLoading').style.display = 'none';
+                }, 1000);
+                
+            } catch (error) {
+                console.error('Saqlash xatosi:', error);
+                alert('Saqlash jarayonida xatolik yuz berdi!');
+                document.getElementById('saveText').style.display = 'inline';
+                document.getElementById('saveLoading').style.display = 'none';
+            }
+        };
+
+        // Chiqish
+        window.logout = async function() {
+            if (confirm('Haqiqatan ham chiqmoqchimisiz?')) {
+                try {
+                    await signOut(auth);
+                    window.location.href = 'login.html';
+                } catch (error) {
+                    console.error('Chiqish xatosi:', error);
+                    alert('Chiqish jarayonida xatolik yuz berdi!');
+                }
+            }
+        };
+
+        // Global funksiyalarni window obyektiga qo'shish
+        window.calculateTotal = calculateTotal;
+        window.calculateFMAverage = calculateFMAverage;
+        window.toggleDay = toggleDay;
+    </script>
+</body>
+</html>

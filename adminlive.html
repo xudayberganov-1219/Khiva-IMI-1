@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <title>Yangiliklar Paneli</title>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js" type="module"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js" type="module"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background: #f8fafc;
+      margin: 0;
+      padding: 20px;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #334155;
+    }
+    form {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #cbd5e1;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    button {
+      background: #3b82f6;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .news-list {
+      max-width: 800px;
+      margin: 40px auto;
+    }
+    .news-item {
+      background: white;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+      position: relative;
+    }
+    .news-item h4 {
+      margin: 0 0 5px;
+    }
+    .news-item small {
+      color: #64748b;
+    }
+    .news-item button {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: #ef4444;
+      padding: 6px 10px;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Yangiliklar Paneli</h2>
+
+  <form id="newsForm">
+    <input type="text" id="title" placeholder="Sarlavha" required maxlength="100">
+    <textarea id="content" placeholder="Yangilik matni" required maxlength="1000"></textarea>
+    <button type="submit"><i class="fas fa-save"></i> Saqlash</button>
+  </form>
+
+  <div class="news-list" id="newsList"></div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import {
+      getFirestore, collection, addDoc,
+      onSnapshot, orderBy, query,
+      deleteDoc, doc
+    } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyASPn93j0gaTfRNuKZ3F6q47CGBeus2fzY",
+      authDomain: "khivaimi1.firebaseapp.com",
+      projectId: "khivaimi1",
+      storageBucket: "khivaimi1.appspot.com",
+      messagingSenderId: "541131443062",
+      appId: "1:541131443062:web:b68f095be3bc4ac61a0857"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    const form = document.getElementById("newsForm");
+    const titleInput = document.getElementById("title");
+    const contentInput = document.getElementById("content");
+    const newsList = document.getElementById("newsList");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const title = titleInput.value.trim();
+      const content = contentInput.value.trim();
+
+      if (title && content) {
+        await addDoc(collection(db, "news"), {
+          title,
+          content,
+          createdAt: new Date()
+        });
+        form.reset();
+      }
+    });
+
+    const q = query(collection(db, "news"), orderBy("createdAt", "desc"));
+    onSnapshot(q, (snap) => {
+      let html = "";
+      snap.forEach((docSnap) => {
+        const d = docSnap.data();
+        const id = docSnap.id;
+        const date = d.createdAt?.toDate().toLocaleString("uz-UZ");
+
+        html += `
+          <div class="news-item">
+            <h4>${d.title}</h4>
+            <p>${d.content}</p>
+            <small><i class="fa-solid fa-clock"></i> ${date}</small>
+            <button onclick="deleteNews('${id}')"><i class="fas fa-trash"></i> O\'chirish</button>
+          </div>
+        `;
+      });
+      newsList.innerHTML = html;
+    });
+
+    window.deleteNews = async (id) => {
+      if (confirm("Bu yangilikni o‘chirmoqchimisiz?")) {
+        await deleteDoc(doc(db, "news", id));
+      }
+    };
+  </script>
+</body>
+</html>

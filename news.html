@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Khiva IMI - Yangiliklar</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #fef6ff 0%, #e76d7d 100%);
+            --success-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --warning-gradient: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            --dark-gradient: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            --light-bg: #f8fafc;
+            --white: #ffffff;
+            --text-primary: #2d3748;
+            --text-secondary: #718096;
+            --border-color: #e2e8f0;
+            --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--light-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        /* Modern Navbar */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        .navbar.scrolled {
+            box-shadow: var(--shadow-lg);
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+        .logo:hover {
+            transform: scale(1.05);
+        }
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--primary-gradient);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .nav-links a:hover {
+            background: var(--primary-gradient);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        /* Hero Section */
+        .hero {
+            background: var(--primary-gradient);
+            padding: 4rem 0;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" fill="white" opacity="0.1"><polygon points="0,0 1000,0 1000,100 0,20"/></svg>');
+            background-size: cover;
+        }
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 2;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            animation: fadeInUp 0.8s ease;
+        }
+        .hero p {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 2rem;
+            animation: fadeInUp 0.8s ease 0.4s both;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            display: block;
+        }
+        .stat-label {
+            font-size: 0.875rem;
+            opacity: 0.8;
+        }
+        /* News Section */
+        .news-section {
+            max-width: 1000px;
+            margin: -2rem auto 4rem;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 10;
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        /* News List - Vertical Layout */
+        .news-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        .news-article {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+            position: relative;
+            animation: fadeInUp 0.6s ease;
+            border-left: 5px solid transparent;
+            background-image: var(--secondary-gradient);
+            background-clip: padding-box;
+        }
+        .news-article:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+        }
+        .news-article::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--secondary-gradient);
+        }
+        .article-header {
+            padding: 2rem 2rem 1rem;
+            border-bottom: 1px solid var(--border-color);
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .article-date {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+        .article-category {
+            background: var(--success-gradient);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .article-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1.3;
+            margin: 0;
+        }
+        .article-content {
+            padding: 2rem;
+        }
+        .article-text {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            white-space: pre-line;
+        }
+        .article-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-color);
+        }
+        .article-share {
+            display: flex;
+            gap: 0.75rem;
+        }
+        .share-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+        .share-btn.telegram {
+            background: #0088cc;
+            color: white;
+        }
+        .share-btn.copy {
+            background: var(--border-color);
+            color: var(--text-secondary);
+        }
+        .share-btn.whatsapp {
+            background: #25d366;
+            color: white;
+        }
+        .share-btn:hover {
+            transform: scale(1.1);
+            box-shadow: var(--shadow-md);
+        }
+        .article-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        .tag {
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        /* Loading States */
+        .loading-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        .loading-spinner {
+            width: 48px;
+            height: 48px;
+            border: 4px solid var(--border-color);
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 1rem;
+        }
+        .loading-text {
+            color: var(--text-secondary);
+            font-size: 1.125rem;
+        }
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+        .empty-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--border-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            color: var(--text-secondary);
+        }
+        .error-state {
+            background: #fed7d7;
+            border: 1px solid #feb2b2;
+            color: #c53030;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            margin: 2rem 0;
+        }
+        /* Search and Filter */
+        .news-controls {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .search-box {
+            flex: 1;
+            min-width: 300px;
+            position: relative;
+        }
+        .search-input {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            font-size: 1rem;
+            background: var(--white);
+            transition: all 0.3s ease;
+        }
+        .search-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+        .sort-select {
+            padding: 1rem;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            background: var(--white);
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        /* Footer */
+        .footer {
+            background: var(--dark-gradient);
+            color: white;
+            padding: 3rem 0 2rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+        }
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .footer-text {
+            opacity: 0.8;
+            margin-bottom: 2rem;
+        }
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .social-link {
+            width: 48px;
+            height: 48px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .social-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 1.5rem;
+            opacity: 0.6;
+            font-size: 0.875rem;
+        }
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 0 1rem;
+            }
+            .nav-links {
+                gap: 1rem;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero-stats {
+                gap: 2rem;
+            }
+            .news-section {
+                padding: 0 1rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .article-header,
+            .article-content {
+                padding: 1.5rem;
+            }
+            .article-title {
+                font-size: 1.5rem;
+            }
+            .news-controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .search-box {
+                min-width: auto;
+            }
+        }
+        @media (max-width: 480px) {
+            .hero {
+                padding: 2rem 0;
+            }
+            .hero h1 {
+                font-size: 1.75rem;
+            }
+            .hero-stats {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .article-header,
+            .article-content {
+                padding: 1rem;
+            }
+            .article-meta {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 56px;
+            height: 56px;
+            background: var(--primary-gradient);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.25rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            box-shadow: var(--shadow-lg);
+        }
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        .scroll-top:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+        }
+        /* Notification */
+        .notification {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: var(--success-gradient);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow-lg);
+            z-index: 1001;
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+        }
+        .notification.show {
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <span class="logo-text">Khiva IMI</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#home"><i class="fas fa-home"></i> Bosh sahifa</a></li>
+                <li><a href="./index.html"><i class="fas fa-arrow-left"></i> Orqaga</a></li>
+                <li><a href="https://t.me/IT_kanal_oo1"><i class="fas fa-info-circle"></i> Biz haqimizda</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>So'nggi Yangiliklar</h1>
+            <p>Xiva IMI maktab-internatining eng muhim yangiliklari va tadbirlari haqida to'liq ma'lumot</p>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number" id="newsCount">0</span>
+                    <span class="stat-label">Yangiliklar</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">244</span>
+                    <span class="stat-label">O'quvchilar</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">35</span>
+                    <span class="stat-label">O'qituvchilar</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Section -->
+    <section class="news-section">
+        <!-- Search and Filter Controls -->
+        <div class="news-controls">
+            <div class="search-box">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" class="search-input" id="searchInput" placeholder="Yangiliklar ichida qidirish...">
+            </div>
+            <select class="sort-select" id="sortSelect">
+                <option value="newest">Eng yangi</option>
+                <option value="oldest">Eng eski</option>
+                <option value="title">Sarlavha bo'yicha</option>
+            </select>
+        </div>
+
+        <div id="news-container">
+            <div class="loading-container">
+                <div class="loading-spinner"></div>
+                <div class="loading-text">Yangiliklar yuklanmoqda...</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <div class="logo-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <span class="logo-text">Khiva IMI</span>
+            </div>
+            <p class="footer-text">Xiva shahar 1-son ixtisoslashtirilgan maktab-internati</p>
+            <div class="footer-social">
+                <a href="https://www.instagram.com/khiva.imi/" class="social-link" target="_blank">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://t.me/khiva1son_imi" class="social-link" target="_blank">
+                    <i class="fab fa-telegram"></i>
+                </a>
+                <a href="https://www.youtube.com/channel/UCaOLW3EsO6zpH0LXSv_QhEg" class="social-link" target="_blank">
+                    <i class="fab fa-youtube"></i>
+                </a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Khiva IMI. Barcha huquqlar himoyalangan.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to top button -->
+    <button class="scroll-top" id="scrollTop">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Firebase SDK -->
+    <script type="module">
+        // Firebase konfiguratsiyasi
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+        import { 
+            getFirestore,
+            collection,
+            onSnapshot,
+            orderBy,
+            query 
+        } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+
+        // Firebase konfiguratsiya obyekti
+        const firebaseConfig = {
+             apiKey: "AIzaSyASPn93j0gaTfRNuKZ3F6q47CGBeus2fzY",
+
+  authDomain: "khivaimi1.firebaseapp.com",
+
+  projectId: "khivaimi1",
+
+  storageBucket: "khivaimi1.firebasestorage.app",
+
+  messagingSenderId: "541131443062",
+
+  appId: "1:541131443062:web:9b50134f580e18da1a0857",
+
+  measurementId: "G-W16ER5KBPQ"
+
+        };
+
+        // Firebase ni ishga tushirish
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        const newsContainer = document.getElementById("news-container");
+        const newsCountElement = document.getElementById("newsCount");
+        const searchInput = document.getElementById("searchInput");
+        const sortSelect = document.getElementById("sortSelect");
+
+        let allNewsItems = [];
+        let filteredNewsItems = [];
+
+        // Yangiliklar yuklanishi
+        function loadNews() {
+            try {
+                const newsQuery = query(
+                    collection(db, "news"), 
+                    orderBy("createdAt", "desc")
+                );
+
+                onSnapshot(newsQuery, (snapshot) => {
+                    allNewsItems = [];
+                    snapshot.forEach((doc) => {
+                        allNewsItems.push({
+                            id: doc.id,
+                            data: doc.data()
+                        });
+                    });
+                    
+                    filteredNewsItems = [...allNewsItems];
+                    displayNews(filteredNewsItems);
+                    updateNewsCount(allNewsItems.length);
+                }, (error) => {
+                    console.error("Yangiliklar yuklanishda xatolik:", error);
+                    showError("Yangiliklar yuklanishda xatolik yuz berdi.");
+                });
+            } catch (error) {
+                console.error("Firebase ulanishida xatolik:", error);
+                loadDemoNews();
+            }
+        }
+
+        // Yangiliklar ko'rsatish (to'liq matn bilan)
+        function displayNews(newsItems) {
+            if (newsItems.length === 0) {
+                showEmpty();
+                return;
+            }
+
+            const newsList = document.createElement('div');
+            newsList.className = 'news-list';
+
+            newsItems.forEach(({ id, data }, index) => {
+                const newsArticle = createNewsArticle(data, index);
+                newsList.appendChild(newsArticle);
+            });
+
+            newsContainer.innerHTML = '';
+            newsContainer.appendChild(newsList);
+        }
+
+        // To'liq yangilik maqolasi yaratish
+        function createNewsArticle(data, index) {
+            const article = document.createElement('div');
+            article.className = 'news-article';
+            article.style.animationDelay = `${index * 0.1}s`;
+
+            // Sana formatlash
+            let dateString = "";
+            if (data.createdAt) {
+                try {
+                    const date = data.createdAt.toDate();
+                    dateString = date.toLocaleDateString('uz-UZ', {
+                        day: 'numeric',
+                        month: 'long',
+                        year: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    });
+                } catch (error) {
+                    dateString = "Bugun";
+                }
+            } else {
+                dateString = "Bugun";
+            }
+
+            // To'liq matn
+            const content = data.content || "";
+            
+            // Teglar yaratish
+            const tags = generateTags(data.title, content);
+
+            article.innerHTML = `
+                <div class="article-header">
+                    <div class="article-meta">
+                        <div class="article-date">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>${dateString}</span>
+                        </div>
+                        <div class="article-category">Yangilik</div>
+                    </div>
+                    <h2 class="article-title">${data.title || "Sarlavha yo'q"}</h2>
+                </div>
+                <div class="article-content">
+                    <div class="article-text">${content}</div>
+                    <div class="article-actions">
+                        <div class="article-tags">
+                            ${tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                        </div>
+                        <div class="article-share">
+                            <button class="share-btn telegram" onclick="shareToTelegram('${encodeURIComponent(data.title)}', '${encodeURIComponent(content)}')" title="Telegram'da ulashish">
+                                <i class="fab fa-telegram"></i>
+                            </button>
+                            <button class="share-btn whatsapp" onclick="shareToWhatsApp('${encodeURIComponent(data.title)}', '${encodeURIComponent(content)}')" title="WhatsApp'da ulashish">
+                                <i class="fab fa-whatsapp"></i>
+                            </button>
+                            <button class="share-btn copy" onclick="copyToClipboard('${data.title}', '${content}')" title="Nusxalash">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            return article;
+        }
+
+        // Teglar yaratish
+        function generateTags(title, content) {
+            const tags = [];
+            const text = (title + ' ' + content).toLowerCase();
+            
+            if (text.includes('olimpiada') || text.includes('tanlov')) tags.push('Olimpiada');
+            if (text.includes('o\'quv') || text.includes('dars')) tags.push('Ta\'lim');
+            if (text.includes('sport') || text.includes('futbol')) tags.push('Sport');
+            if (text.includes('madaniy') || text.includes('konsert')) tags.push('Madaniyat');
+            if (text.includes('yangi') || text.includes('ochildi')) tags.push('Yangilik');
+            if (text.includes('taqdir') || text.includes('mukofot')) tags.push('Mukofot');
+            
+            return tags.length > 0 ? tags : ['Umumiy'];
+        }
+
+        // Qidiruv funksiyasi
+        function filterNews() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const sortType = sortSelect.value;
+
+            filteredNewsItems = allNewsItems.filter(item => {
+                const title = (item.data.title || '').toLowerCase();
+                const content = (item.data.content || '').toLowerCase();
+                return title.includes(searchTerm) || content.includes(searchTerm);
+            });
+
+            // Saralash
+            switch(sortType) {
+                case 'oldest':
+                    filteredNewsItems.sort((a, b) => {
+                        const dateA = a.data.createdAt ? a.data.createdAt.toDate() : new Date(0);
+                        const dateB = b.data.createdAt ? b.data.createdAt.toDate() : new Date(0);
+                        return dateA - dateB;
+                    });
+                    break;
+                case 'title':
+                    filteredNewsItems.sort((a, b) => {
+                        const titleA = (a.data.title || '').toLowerCase();
+                        const titleB = (b.data.title || '').toLowerCase();
+                        return titleA.localeCompare(titleB);
+                    });
+                    break;
+                default: // newest
+                    filteredNewsItems.sort((a, b) => {
+                        const dateA = a.data.createdAt ? a.data.createdAt.toDate() : new Date();
+                        const dateB = b.data.createdAt ? b.data.createdAt.toDate() : new Date();
+                        return dateB - dateA;
+                    });
+            }
+
+            displayNews(filteredNewsItems);
+        }
+
+        // Yangiliklar sonini yangilash
+        function updateNewsCount(count) {
+            let currentCount = 0;
+            const increment = count / 50;
+            const timer = setInterval(() => {
+                currentCount += increment;
+                if (currentCount >= count) {
+                    currentCount = count;
+                    clearInterval(timer);
+                }
+                newsCountElement.textContent = Math.floor(currentCount);
+            }, 30);
+        }
+
+        // Bo'sh holat
+        function showEmpty() {
+            newsContainer.innerHTML = `
+                <div class="empty-state">
+                    <div class="empty-icon">
+                        <i class="fas fa-newspaper"></i>
+                    </div>
+                    <h3>Yangiliklar topilmadi</h3>
+                    <p>Qidiruv so'zini o'zgartirib ko'ring yoki barcha yangiliklar uchun qidiruvni tozalang</p>
+                </div>
+            `;
+        }
+
+        // Xatolik holati
+        function showError(message) {
+            newsContainer.innerHTML = `
+                <div class="error-state">
+                    <i class="fas fa-exclamation-triangle" style="font-size: 2rem; margin-bottom: 1rem;"></i>
+                    <h3>Xatolik yuz berdi</h3>
+                    <p>${message}</p>
+                    <button onclick="location.reload()" style="margin-top: 1rem; padding: 0.5rem 1rem; background: #667eea; color: white; border: none; border-radius: 8px; cursor: pointer;">
+                        Qayta yuklash
+                    </button>
+                </div>
+            `;
+        }
+
+        // Demo ma'lumotlar
+        function loadDemoNews() {
+            const demoNews = [
+                {
+                    id: "demo1",
+                    data: {
+                        title: "🎓 2024-2025 o'quv yili rasmiy ochilishi",
+                        content: `Hurmatli o'quvchilar, ota-onalar va o'qituvchilar!
+
+Bugun bizning maktab-internatimizda yangi 2024-2025 o'quv yili tantanali ravishda boshlandi. Ochilish marosimida maktab direktori, o'qituvchilar va o'quvchilar ishtirok etdi.
+
+Yangi o'quv yilida quyidagi yangiliklar mavjud:
+
+🔬 Zamonaviy fizika va kimyo laboratoriyalari
+📚 Yangi darsliklar va o'quv materiallari  
+💻 Kompyuter sinflari yangilandi
+🎨 San'at va musiqa xonalari jihozlandi
+🏃‍♂️ Sport majmuasi kengaytirildi
+
+Barcha o'quvchilarimizga yangi o'quv yilida muvaffaqiyatlar tilaymiz!
+
+Maktab ma'muriyati`,
+                        createdAt: new Date()
+                    }
+                },
+                {
+                    id: "demo2", 
+                    data: {
+                        title: "🏆 Viloyat olimpiadasida yuqori natijalar",
+                        content: `Faxrlanamiz! Bizning o'quvchilarimiz viloyat olimpiadasida ajoyib natijalar ko'rsatdi.
+
+G'oliblar ro'yxati:
+
+🥇 Matematika olimpiadasi
+   - 1-o'rin: Ahmadjon Karimov (10-sinf)
+   - 2-o'rin: Malika Tosheva (9-sinf)
+
+🥇 Fizika olimpiadasi  
+   - 1-o'rin: Sardor Rahimov (11-sinf)
+   - 3-o'rin: Dilnoza Yusupova (10-sinf)
+
+🥇 Kimyo olimpiadasi
+   - 2-o'rin: Jasur Abdullayev (11-sinf)
+
+🥇 Ingliz tili olimpiadasi
+   - 1-o'rin: Nigora Karimova (9-sinf)
+   - 2-o'rin: Bobur Toshev (10-sinf)
+
+Barcha g'oliblarga chin dildan tabriklarimiz! Sizlar maktabimizning faxri va g'ururisiz.
+
+Keyingi bosqich - respublika olimpiadasi. Omad tilaymiz!`,
+                        createdAt: new Date(Date.now() - 86400000)
+                    }
+                },
+                {
+                    id: "demo3",
+                    data: {
+                        title: "💻 Yangi IT-laboratoriya ochildi",
+                        content: `Bugun maktabimizda zamonaviy IT-laboratoriya rasmiy ochildi!
+
+Laboratoriya imkoniyatlari:
+
+🖥️ 30 ta yangi kompyuter (Intel Core i5, 8GB RAM)
+📺 75" Smart TV interaktiv doska
+🌐 Yuqori tezlikdagi internet (100 Mbps)
+🎧 Professional audio qurilmalari
+📹 Video montaj uchun dasturlar
+🤖 Robotika to'plami
+
+Yangi kurslar:
+• Web dasturlash (HTML, CSS, JavaScript)
+• Python dasturlash tili
+• Grafik dizayn (Photoshop, Illustrator)  
+• Video montaj va animatsiya
+• Robotika va Arduino
+• 3D modellashtirish
+
+Darslar har kuni 14:00-17:00 oralig'ida o'tkaziladi.
+
+Ro'yxatdan o'tish uchun IT o'qituvchisi Aziz Rahimov bilan bog'laning.
+
+#ITta'lim #Dasturlash #Robotika`,
+                        createdAt: new Date(Date.now() - 172800000)
+                    }
+                },
+                {
+                    id: "demo4",
+                    data: {
+                        title: "\"Yoshlik bahari\" madaniy tadbirlar haftaligi",
+                        content: `Hurmatli jamoatchilik!,
+
+Kelgusi hafta maktabimizda "Yoshlik bahari" madaniy tadbirlar haftaligi o'tkaziladi.
+
+Dastur:
+
+📅 Dushanba (15-yanvar)
+🎵 "Yosh ijodkorlar kechasi" - konsert dasturi
+⏰ 15:00, Aktlar zali
+
+📅 Seshanba (16-yanvar)  
+🎨 Ko'rgazmali san'at ko'rgazmasi ochilishi
+⏰ 14:00, San'at xonasi
+
+📅 Chorshanba (17-yanvar)
+📚 "Kitob - bilim manbai" adabiy kecha
+⏰ 15:30, Kutubxona
+
+📅 Payshanba (18-yanvar)
+🏃‍♂️ Sport musobaqalari
+⏰ 14:00, Sport majmuasi
+
+📅 Juma (19-yanvar)
+🎉 Yakuniy kecha va g'oliblarni taqdirlash
+⏰ 16:00, Aktlar zali
+
+Barcha o'quvchilar va ota-onalar taklif etiladi!
+
+Batafsil ma'lumot uchun: 
+📞 +998 62 375-XX-XX
+📧 info@khivaimi.uz`,
+                        createdAt: new Date(Date.now() - 259200000)
+                    }
+                }
+            ];
+            
+            allNewsItems = demoNews;
+            filteredNewsItems = [...allNewsItems];
+            displayNews(filteredNewsItems);
+            updateNewsCount(demoNews.length);
+        }
+
+        // Global funksiyalar
+        window.shareToTelegram = function(title, content) {
+            const text = `${decodeURIComponent(title)}\n\n${decodeURIComponent(content)}\n\n${window.location.href}`;
+            const url = `https://t.me/share/url?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent(text)}`;
+            window.open(url, '_blank');
+        };
+
+        window.shareToWhatsApp = function(title, content) {
+            const text = `${decodeURIComponent(title)}\n\n${decodeURIComponent(content)}\n\n${window.location.href}`;
+            const url = `https://wa.me/?text=${encodeURIComponent(text)}`;
+            window.open(url, '_blank');
+        };
+
+        window.copyToClipboard = function(title, content) {
+            const text = `${title}\n\n${content}\n\n${window.location.href}`;
+            navigator.clipboard.writeText(text).then(() => {
+                showNotification('Maqola nusxalandi!');
+            }).catch(() => {
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = text;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                showNotification('Maqola nusxalandi!');
+            });
+        };
+
+        // Bildirishnoma ko'rsatish
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.innerHTML = `<i class="fas fa-check"></i> ${message}`;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => notification.classList.add('show'), 100);
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => document.body.removeChild(notification), 300);
+            }, 3000);
+        }
+
+        // Event listeners
+        searchInput.addEventListener('input', filterNews);
+        sortSelect.addEventListener('change', filterNews);
+
+        // Sahifa yuklanganda
+        document.addEventListener('DOMContentLoaded', function() {
+            loadNews();
+            
+            // Demo ma'lumotlar 5 soniyadan keyin
+            setTimeout(() => {
+                if (newsContainer.innerHTML.includes('loading')) {
+                    loadDemoNews();
+                }
+            }, 5000);
+        });
+    </script>
+
+    <!-- Qo'shimcha JavaScript -->
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            const scrollTop = document.getElementById('scrollTop');
+            
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+                scrollTop.classList.add('visible');
+            } else {
+                navbar.classList.remove('scrolled');
+                scrollTop.classList.remove('visible');
+            }
+        });
+
+        // Scroll to top
+        document.getElementById('scrollTop').addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Loading animation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate elements on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe news articles
+            setTimeout(() => {
+                document.querySelectorAll('.news-article').forEach(article => {
+                    observer.observe(article);
+                });
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

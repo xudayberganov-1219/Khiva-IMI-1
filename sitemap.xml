@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+    <!-- Bosh sahifa -->
+    <url>
+        <loc>https://khiva-school1.uz/</loc>
+        <lastmod>2025-01-07</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+    </url>
+
+    <!-- Maktab haqida -->
+    <url>
+        <loc>https://khiva-school1.uz/#about</loc>
+        <lastmod>2025-01-07</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- Yutuqlar -->
+    <url>
+        <loc>https://khiva-school1.uz/#achievements</loc>
+        <lastmod>2025-01-07</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- O'qituvchilar -->
+    <url>
+        <loc>https://khiva-school1.uz/#teachers</loc>
+        <lastmod>2025-01-07</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Sertifikatlar -->
+    <url>
+        <loc>https://khiva-school1.uz/#certificates</loc>
+        <lastmod>2025-01-07</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Yangiliklar bo'limi -->
+    <url>
+        <loc>https://khiva-school1.uz/#news</loc>
+        <lastmod>2025-01-07</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Aloqa -->
+    <url>
+        <loc>https://khiva-school1.uz/#contact</loc>
+        <lastmod>2025-01-07</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Yangiliklar sahifasi -->
+    <url>
+        <loc>https://khiva-school1.uz/news.html</loc>
+        <lastmod>2025-01-07</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- O'quvchilar kundaligi -->
+    <url>
+        <loc>https://khiva-school1.uz/login.html</loc>
+        <lastmod>2025-01-07</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+
+    <!-- Admin panel -->
+    <url>
+        <loc>https://khiva-school1.uz/admin.html</loc>
+        <lastmod>2025-01-07</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.3</priority>
+    </url>
+
+    <!-- Qo'shimcha sahifalar -->
+    
+    <!-- Qabul ma'lumotlari -->
+    <url>
+        <loc>https://khiva-school1.uz/admission</loc>
+        <lastmod>2025-01-07</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Maktab tarixi -->
+    <url>
+        <loc>https://khiva-school1.uz/history</loc>
+        <lastmod>2025-01-07</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.6</priority>
+    </url>
+
+    <!-- Ta'lim dasturlari -->
+    <url>
+        <loc>https://khiva-school1.uz/programs</loc>
+        <lastmod>2025-01-07</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Olimpiada natijalari -->
+    <url>
+        <loc>https://khiva-school1.uz/olympiad-results</loc>
+        <lastmod>2025-01-07</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+
+    <!-- Laboratoriyalar -->
+    <url>
+        <loc>https://khiva-school1.uz/laboratories</loc>
+        <lastmod>2025-01-07</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.6</priority>
+    </url>
+
+    <!-- Sport faoliyati -->
+    <url>
+        <loc>https://khiva-school1.uz/sports</loc>
+        <lastmod>2025-01-07</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.5</priority>
+    </url>
+
+    <!-- Kutubxona -->
+    <url>
+        <loc>https://khiva-school1.uz/library</loc>
+        <lastmod>2025-01-07</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.5</priority>
+    </url>
+
+    <!-- Ota-onalar uchun -->
+    <url>
+        <loc>https://khiva-school1.uz/parents</loc>
+        <lastmod>2025-01-07</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+
+    <!-- Bitiruvchilar -->
+    <url>
+        <loc>https://khiva-school1.uz/graduates</loc>
+        <lastmod>2025-01-07</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.5</priority>
+    </url>
+
+    <!-- Galereya -->
+    <url>
+        <loc>https://khiva-school1.uz/gallery</loc>
+        <lastmod>2025-01-07</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.5</priority>
+    </url>
+
+    <!-- Yangiliklar arxivi -->
+    <url>
+        <loc>https://khiva-school1.uz/news/2024</loc>
+        <lastmod>2025-01-07</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.4</priority>
+    </url>
+
+    <url>
+        <loc>https://khiva-school1.uz/news/2023</loc>
+        <lastmod>2025-01-07</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.3</priority>
+    </url>
+
+    <!-- Til versiyalari -->
+    <url>
+        <loc>https://khiva-school1.uz/uz</loc>
+        <lastmod>2025-01-07</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <url>
+        <loc>https://khiva-school1.uz/ru</loc>
+        <lastmod>2025-01-07</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://khiva-school1.uz/en</loc>
+        <lastmod>2025-01-07</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Maxsus sahifalar -->
+    
+    <!-- Qoidalar va nizomlar -->
+    <url>
+        <loc>https://khiva-school1.uz/regulations</loc>
+        <lastmod>2025-01-07</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.4</priority>
+    </url>
+
+    <!-- Maxfiylik siyosati -->
+    <url>
+        <loc>https://khiva-school1.uz/privacy-policy</loc>
+        <lastmod>2025-01-07</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.3</priority>
+    </url>
+
+    <!-- Foydalanish shartlari -->
+    <url>
+        <loc>https://khiva-school1.uz/terms-of-use</loc>
+        <lastmod>2025-01-07</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.3</priority>
+    </url>
+
+    <!-- Sayt xaritasi -->
+    <url>
+        <loc>https://khiva-school1.uz/sitemap</loc>
+        <lastmod>2025-01-07</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.4</priority>
+    </url>
+
+</urlset>

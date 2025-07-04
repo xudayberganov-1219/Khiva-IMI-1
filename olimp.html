@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Olimpiada g'oliblari</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+        }
+        .card {
+            transition: all 0.3s ease;
+            transform-style: preserve-3d;
+        }
+        .card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .gold {
+            background: linear-gradient(135deg, #FFD700 0%, #F9D423 100%);
+        }
+        .silver {
+            background: linear-gradient(135deg, #C0C0C0 0%, #E0E0E0 100%);
+        }
+        .bronze {
+            background: linear-gradient(135deg, #CD7F32 0%, #D2A56D 100%);
+        }
+        .medal {
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .avatar {
+            border: 3px solid white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        /* Fanlarga xos ranglar */
+        .math-card { background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); }
+        .physics-card { background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); }
+        .english-card { background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%); }
+        .biology-card { background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); }
+        .math-title { color: #4a148c; border-color: #7b1fa2; }
+        .physics-title { color: #01579b; border-color: #0277bd; }
+        .english-title { color: #006064; border-color: #00838f; }
+        .biology-title { color: #1b5e20; border-color: #2e7d32; }
+    </style>
+</head>
+<body class="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto">
+        <!-- Sarlavha -->
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-center mb-16 text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-800">
+            Olimpiada G'oliblari
+        </h1>
+
+        <!-- Matematika bo'limi -->
+        <div class="mb-20">
+            <h2 class="text-2xl md:text-3xl font-bold mb-8 math-title border-b-2 pb-2">
+                <span class="inline-block mr-2">🧮</span> Matematika
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- 1-o'rin -->
+                <div class="card math-card rounded-xl p-6 shadow-lg relative overflow-hidden">
+                    <div class="absolute top-4 right-4 medal">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-yellow-600" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm.707-10.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L9.414 11H13a1 1 0 100-2H9.414l1.293-1.293z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="O'quvchi" class="avatar w-24 h-24 rounded-full mb-4 object-cover">
+                        <h3 class="text-xl font-bold text-gray-800 mb-1">Azimov Shohruh</h3>
+                        <p class="text-gray-700 text-sm mb-3 text-center">Viloyat bosqichi, STEAM</p>
+                        <div class="mt-4 px-4 py-2 bg-white bg-opacity-30 rounded-full">
+                            <span class="text-gray-800 font-semibold">2025-yil</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2-o'rin -->
+                <div class="card math-card rounded-xl p-6 shadow-lg relative overflow-hidden">
+                    <div class="absolute top-4 right-4 medal">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v3.586L7.707 9.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 10.586V7z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="O'quvchi" class="avatar w-24 h-24 rounded-full mb-4 object-cover">
+                        <h3 class="text-xl font-bold text-gray-800 mb-1">Karimova Dilfuza</h3>
+                        <p class="text-gray-700 text-sm mb-3 text-center">Viloyat bosqichi, STEAM</p>
+                        <div class="mt-4 px-4 py-2 bg-white bg-opacity-30 rounded-full">
+                            <span class="text-gray-800 font-semibold">2025-yil</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3-o'rin -->
+                <div class="card math-card rounded-xl p-6 shadow-lg relative overflow-hidden">
+                    <div class="absolute top-4 right-4 medal">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-amber-800" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M12.395 2.553a1 1 0 00-1.45-.385c-.345.23-.614.558-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 00-.613 3.58 2.64 2.64 0 01-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 005.05 6.05 6.981 6.981 0 003 11a7 7 0 1011.95-4.95c-.592-.591-.98-.985-1.348-1.467-.363-.476-.724-1.063-1.207-2.03zM12.12 15.12A3 3 0 017 13s.879.5 2.5.5c0-1 .5-4 1.25-4.5.5 1 .786 1.293 1.371 1.879A2.99 2.99 0 0113 13a2.99 2.99 0 01-.879 2.121z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="O'quvchi" class="avatar w-24 h-24 rounded-full mb-4 object-cover">
+                        <h3 class="text-xl font-bold text-gray-800 mb-1">Yusupov Jasur</h3>
+                        <p class="text-gray-700 text-sm mb-3 text-center">Viloyat bosqichi, STEAM</p>
+                        <div class="mt-4 px-4 py-2 bg-white bg-opacity-30 rounded-full">
+                            <span class="text-gray-800 font-semibold">2025-yil</span>
+                        </div>
+                    </div>
+                </div>
+            </div><br>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- 1-o'rin -->
+                <div class="card math-card rounded-xl p-6 shadow-lg relative overflow-hidden">
+                    <div class="absolute top-4 right-4 medal">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-yellow-600" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm.707-10.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L9.414 11H13a1 1 0 100-2H9.414l1.293-1.293z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="O'quvchi" class="avatar w-24 h-24 rounded-full mb-4 object-cover">
+                        <h3 class="text-xl font-bold text-gray-800 mb-1">Azimov Shohruh</h3>
+                        <p class="text-gray-700 text-sm mb-3 text-center">Viloyat bosqichi, STEAM</p>
+                        <div class="mt-4 px-4 py-2 bg-white bg-opacity-30 rounded-full">
+                            <span class="text-gray-800 font-semibold">2025-yil</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2-o'rin -->
+                <div class="card math-card rounded-xl p-6 shadow-lg relative overflow-hidden">
+                    <div class="absolute top-4 right-4 medal">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v3.586L7.707 9.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 10.586V7z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="O'quvchi" class="avatar w-24 h-24 rounded-full mb-4 object-cover">
+                        <h3 class="text-xl font-bold text-gray-800 mb-1">Karimova Dilfuza</h3>
+                        <p class="text-gray-700 text-sm mb-3 text-center">Viloyat bosqichi, STEAM</p>
+                        <div class="mt-4 px-4 py-2 bg-white bg-opacity-30 rounded-full">
+                            <span class="text-gray-800 font-semibold">2025-yil</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3-o'rin -->
+                <div class="card math-card rounded-xl p-6 shadow-lg relative overflow-hidden">
+                    <div class="absolute top-4 right-4 medal">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-amber-800" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M12.395 2.553a1 1 0 00-1.45-.385c-.345.23-.614.558-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 00-.613 3.58 2.64 2.64 0 01-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 005.05 6.05 6.981 6.981 0 003 11a7 7 0 1011.95-4.95c-.592-.591-.98-.985-1.348-1.467-.363-.476-.724-1.063-1.207-2.03zM12.12 15.12A3 3 0 017 13s.879.5 2.5.5c0-1 .5-4 1.25-4.5.5 1 .786 1.293 1.371 1.879A2.99 2.99 0 0113 13a2.99 2.99 0 01-.879 2.121z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="O'quvchi" class="avatar w-24 h-24 rounded-full mb-4 object-cover">
+                        <h3 class="text-xl font-bold text-gray-800 mb-1">Yusupov Jasur</h3>
+                        <p class="text-gray-700 text-sm mb-3 text-center">Viloyat bosqichi, STEAM</p>
+                        <div class="mt-4 px-4 py-2 bg-white bg-opacity-30 rounded-full">
+                            <span class="text-gray-800 font-semibold">2025-yil</span>
+                        </div>
+                    </div>
+                </div>
+            </div><br>
+        
+            
+          
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- 1-o'rin -->
+                <div class="card math-card rounded-xl p-6 shadow-lg relative overflow-hidden">
+                    <div class="absolute top-4 right-4 medal">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-yellow-600" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm.707-10.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L9.414 11H13a1 1 0 100-2H9.414l1.293-1.293z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="O'quvchi" class="avatar w-24 h-24 rounded-full mb-4 object-cover">
+                        <h3 class="text-xl font-bold text-gray-800 mb-1">Azimov Shohruh</h3>
+                        <p class="text-gray-700 text-sm mb-3 text-center">Viloyat bosqichi, STEAM</p>
+                        <div class="mt-4 px-4 py-2 bg-white bg-opacity-30 rounded-full">
+                            <span class="text-gray-800 font-semibold">2025-yil</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2-o'rin -->
+                <div class="card math-card rounded-xl p-6 shadow-lg relative overflow-hidden">
+                    <div class="absolute top-4 right-4 medal">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v3.586L7.707 9.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 10.586V7z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="O'quvchi" class="avatar w-24 h-24 rounded-full mb-4 object-cover">
+                        <h3 class="text-xl font-bold text-gray-800 mb-1">Karimova Dilfuza</h3>
+                        <p class="text-gray-700 text-sm mb-3 text-center">Viloyat bosqichi, STEAM</p>
+                        <div class="mt-4 px-4 py-2 bg-white bg-opacity-30 rounded-full">
+                            <span class="text-gray-800 font-semibold">2025-yil</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3-o'rin -->
+                <div class="card math-card rounded-xl p-6 shadow-lg relative overflow-hidden">
+                    <div class="absolute top-4 right-4 medal">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-amber-800" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M12.395 2.553a1 1 0 00-1.45-.385c-.345.23-.614.558-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 00-.613 3.58 2.64 2.64 0 01-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 005.05 6.05 6.981 6.981 0 003 11a7 7 0 1011.95-4.95c-.592-.591-.98-.985-1.348-1.467-.363-.476-.724-1.063-1.207-2.03zM12.12 15.12A3 3 0 017 13s.879.5 2.5.5c0-1 .5-4 1.25-4.5.5 1 .786 1.293 1.371 1.879A2.99 2.99 0 0113 13a2.99 2.99 0 01-.879 2.121z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="O'quvchi" class="avatar w-24 h-24 rounded-full mb-4 object-cover">
+                        <h3 class="text-xl font-bold text-gray-800 mb-1">Yusupov Jasur</h3>
+                        <p class="text-gray-700 text-sm mb-3 text-center">Viloyat bosqichi, STEAM</p>
+                        <div class="mt-4 px-4 py-2 bg-white bg-opacity-30 rounded-full">
+                            <span class="text-gray-800 font-semibold">2025-yil</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fizika bo'limi -->
+        <div class="mb-20">
+            <h2 class="text-2xl md:text-3xl font-bold mb-8 physics-title border-b-2 pb-2">
+                <span class="inline-block mr-2">⚛️</span> Fizika
+            </h2>
+            
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- 1-o'rin -->
+                <div class="card physics-card rounded-xl p-6 shadow-lg relative overflow-hidden">
+                    <div class="absolute top-4 right-4 medal">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-yellow-600" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm.707-10.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L9.414 11H13a1 1 0 100-2H9.414l1.293-1.293z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <img src="https://randomuser.me/api/portraits/women/28.jpg" alt="O'quvchi" class="avatar w-24 h-24 rounded-full mb-4 object-cover">
+                        <h3 class="text-xl font-bold text-gray-800 mb-1">Nazarova Malika</h3>
+                        <p class="text-gray-700 text-sm mb-3 text-center">Respublika bosqichi, STEAM</p>
+                        <div class="mt-4 px-4 py-2 bg-white bg-opacity-30 rounded-full">
+                            <span class="text-gray-800 font-semibold">2025-yil</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2-o'rin -->
+                <div class="card physics-card rounded-xl p-6 shadow-lg relative overflow-hidden">
+                    <div class="absolute top-4 right-4 medal">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v3.586L7.707 9.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 10.586V7z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="O'quvchi" class="avatar w-24 h-24 rounded-full mb-4 object-cover">
+                        <h3 class="text-xl font-bold text-gray-800 mb-1">Toshmatov Bahodir</h3>
+                        <p class="text-gray-700 text-sm mb-3 text-center">Respublika bosqichi, STEAM</p>
+                        <div class="mt-4 px-4 py-2 bg-white bg-opacity-30 rounded-full">
+                            <span class="text-gray-800 font-semibold">2025-yil</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3-o'rin -->
+                <div class="card physics-card rounded-xl p-6 shadow-lg relative overflow-hidden">
+                    <div class="absolute top-4 right-4 medal">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-amber-800" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M12.395 2.553a1 1 0 00-1.45-.385c-.345.23-.614.558-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 00-.613 3.58 2.64 2.64 0 01-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 005.05 6.05 6.981 6.981 0 003 11a7 7 0 1011.95-4.95c-.592-.591-.98-.985-1.348-1.467-.363-.476-.724-1.063-1.207-2.03zM12.12 15.12A3 3 0 017 13s.879.5 2.5.5c0-1 .5-4 1.25-4.5.5 1 .786 1.293 1.371 1.879A2.99 2.99 0 0113 13a2.99 2.99 0 01-.879 2.121z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <img src="https://randomuser.me/api/portraits/women/63.jpg" alt="O'quvchi" class="avatar w-24 h-24 rounded-full mb-4 object-cover">
+                        <h3 class="text-xl font-bold text-gray-800 mb-1">Qodirova Zarina</h3>
+                        <p class="text-gray-700 text-sm mb-3 text-center">Respublika bosqichi, STEAM</p>
+                        <div class="mt-4 px-4 py-2 bg-white bg-opacity-30 rounded-full">
+                            <span class="text-gray-800 font-semibold">2025-yil</span>
+                        </div>
+                    </div>
+                </div>
+            </div><br>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- 1-o'rin -->
+                <div class="card physics-card rounded-xl p-6 shadow-lg relative overflow-hidden">
+                    <div class="absolute top-4 right-4 medal">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-yellow-600" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm.707-10.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L9.414 11H13a1 1 0 100-2H9.414l1.293-1.293z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <img src="https://randomuser.me/api/portraits/women/28.jpg" alt="O'quvchi" class="avatar w-24 h-24 rounded-full mb-4 object-cover">
+                        <h3 class="text-xl font-bold text-gray-800 mb-1">Nazarova Malika</h3>
+                        <p class="text-gray-700 text-sm mb-3 text-center">Respublika bosqichi, STEAM</p>
+                        <div class="mt-4 px-4 py-2 bg-white bg-opacity-30 rounded-full">
+                            <span class="text-gray-800 font-semibold">2025-yil</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2-o'rin -->
+                <div class="card physics-card rounded-xl p-6 shadow-lg relative overflow-hidden">
+                    <div class="absolute top-4 right-4 medal">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v3.586L7.707 9.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 10.586V7z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="O'quvchi" class="avatar w-24 h-24 rounded-full mb-4 object-cover">
+                        <h3 class="text-xl font-bold text-gray-800 mb-1">Toshmatov Bahodir</h3>
+                        <p class="text-gray-700 text-sm mb-3 text-center">Respublika bosqichi, STEAM</p>
+                        <div class="mt-4 px-4 py-2 bg-white bg-opacity-30 rounded-full">
+                            <span class="text-gray-800 font-semibold">2025-yil</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3-o'rin -->
+                <div class="card physics-card rounded-xl p-6 shadow-lg relative overflow-hidden">
+                    <div class="absolute top-4 right-4 medal">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-amber-800" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M12.395 2.553a1 1 0 00-1.45-.385c-.345.23-.614.558-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 00-.613 3.58 2.64 2.64 0 01-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 005.05 6.05 6.981 6.981 0 003 11a7 7 0 1011.95-4.95c-.592-.591-.98-.985-1.348-1.467-.363-.476-.724-1.063-1.207-2.03zM12.12 15.12A3 3 0 017 13s.879.5 2.5.5c0-1 .5-4 1.25-4.5.5 1 .786 1.293 1.371 1.879A2.99 2.99 0 0113 13a2.99 2.99 0 01-.879 2.121z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <img src="https://randomuser.me/api/portraits/women/63.jpg" alt="O'quvchi" class="avatar w-24 h-24 rounded-full mb-4 object-cover">
+                        <h3 class="text-xl font-bold text-gray-800 mb-1">Qodirova Zarina</h3>
+                        <p class="text-gray-700 text-sm mb-3 text-center">Respublika bosqichi, STEAM</p>
+                        <div class="mt-4 px-4 py-2 bg-white bg-opacity-30 rounded-full">
+                            <span class="text-gray-800 font-semibold">2025-yil</span>
+                        </div>
+                    </div>
+                </div>
+            </div><br>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- 1-o'rin -->
+                <div class="card physics-card rounded-xl p-6 shadow-lg relative overflow-hidden">
+                    <div class="absolute top-4 right-4 medal">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-yellow-600" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm.707-10.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L9.414 11H13a1 1 0 100-2H9.414l1.293-1.293z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <img src="https://randomuser.me/api/portraits/women/28.jpg" alt="O'quvchi" class="avatar w-24 h-24 rounded-full mb-4 object-cover">
+                        <h3 class="text-xl font-bold text-gray-800 mb-1">Nazarova Malika</h3>
+                        <p class="text-gray-700 text-sm mb-3 text-center">Respublika bosqichi, STEAM</p>
+                        <div class="mt-4 px-4 py-2 bg-white bg-opacity-30 rounded-full">
+                            <span class="text-gray-800 font-semibold">2025-yil</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2-o'rin -->
+                <div class="card physics-card rounded-xl p-6 shadow-lg relative overflow-hidden">
+                    <div class="absolute top-4 right-4 medal">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v3.586L7.707 9.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 10.586V7z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="O'quvchi" class="avatar w-24 h-24 rounded-full mb-4 object-cover">
+                        <h3 class="text-xl font-bold text-gray-800 mb-1">Toshmatov Bahodir</h3>
+                        <p class="text-gray-700 text-sm mb-3 text-center">Respublika bosqichi, STEAM</p>
+                        <div class="mt-4 px-4 py-2 bg-white bg-opacity-30 rounded-full">
+                            <span class="text-gray-800 font-semibold">2025-yil</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3-o'rin -->
+                <div class="card physics-card rounded-xl p-6 shadow-lg relative overflow-hidden">
+                    <div class="absolute top-4 right-4 medal">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-amber-800" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M12.395 2.553a1 1 0 00-1.45-.385c-.345.23-.614.558-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 00-.613 3.58 2.64 2.64 0 01-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 005.05 6.05 6.981 6.981 0 003 11a7 7 0 1011.95-4.95c-.592-.591-.98-.985-1.348-1.467-.363-.476-.724-1.063-1.207-2.03zM12.12 15.12A3 3 0 017 13s.879.5 2.5.5c0-1 .5-4 1.25-4.5.5 1 .786 1.293 1.371 1.879A2.99 2.99 0 0113 13a2.99 2.99 0 01-.879 2.121z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <img src="https://randomuser.me/api/portraits/women/63.jpg" alt="O'quvchi" class="avatar w-24 h-24 rounded-full mb-4 object-cover">
+                        <h3 class="text-xl font-bold text-gray-800 mb-1">Qodirova Zarina</h3>
+                        <p class="text-gray-700 text-sm mb-3 text-center">Respublika bosqichi, STEAM</p>
+                        <div class="mt-4 px-4 py-2 bg-white bg-opacity-30 rounded-full">
+                            <span class="text-gray-800 font-semibold">2025-yil</span>
+                        </div>
+                    </div>
+                </div>
+            </div><br>
+        </div>
+
+        <!-- Ingliz tili bo'limi -->
+        <div class="mb-20">
+            <h2 class="text-2xl md:text-3xl font-bold mb-8 english-title border-b-2 pb-2">
+                <span class="inline-block mr-2">🇬🇧</span> Ingliz Tili
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- 1-o'rin -->
+                <div class="card english-card rounded-xl p-6 shadow-lg relative overflow-hidden">
+                    <div class="absolute top-4 right-4 medal">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-yellow-600" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm.707-10.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L9.414 11H13a1 1 0 100-2H9.414l1.293-1.293z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="O'quvchi" class="avatar w-24 h-24 rounded-full mb-4 object-cover">
+                        <h3 class="text-xl font-bold text-gray-800 mb-1">Smith John</h3>
+                        <p class="text-gray-700 text-sm mb-3 text-center">Xalqaro bosqich, Gumanitar</p>
+                        <div class="mt-4 px-4 py-2 bg-white bg-opacity-30 rounded-full">
+                            <span class="text-gray-800 font-semibold">2025-yil</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2-o'rin -->
+                <div class="card english-card rounded-xl p-6 shadow-lg relative overflow-hidden">
+                    <div class="absolute top-4 right-4 medal">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v3.586L7.707 9.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 10.586V7z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <img src="https://randomuser.me/api/portraits/women/33.jpg" alt="O'quvchi" class="avatar w-24 h-24 rounded-full mb-4 object-cover">
+                        <h3 class="text-xl font-bold text-gray-800 mb-1">Johnson Emily</h3>
+                        <p class="text-gray-700 text-sm mb-3 text-center">Xalqaro bosqich, Gumanitar</p>
+                        <div class="mt-4 px-4 py-2 bg-white bg-opacity-30 rounded-full">
+                            <span class="text-gray-800 font-semibold">2025-yil</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3-o'rin -->
+                <div class="card english-card rounded-xl p-6 shadow-lg relative overflow-hidden">
+                    <div class="absolute top-4 right-4 medal">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-amber-800" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M12.395 2.553a1 1 0 00-1.45-.385c-.345.23-.614.558-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 00-.613 3.58 2.64 2.64 0 01-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 005.05 6.05 6.981 6.981 0 003 11a7 7 0 1011.95-4.95c-.592-.591-.98-.985-1.348-1.467-.363-.476-.724-1.063-1.207-2.03zM12.12 15.12A3 3 0 017 13s.879.5 2.5.5c0-1 .5-4 1.25-4.5.5 1 .786 1.293 1.371 1.879A2.99 2.99 0 0113 13a2.99 2.99 0 01-.879 2.121z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="O'quvchi" class="avatar w-24 h-24 rounded-full mb-4 object-cover">
+                        <h3 class="text-xl font-bold text-gray-800 mb-1">Williams David</h3>
+                        <p class="text-gray-700 text-sm mb-3 text-center">Xalqaro bosqich, Gumanitar</p>
+                        <div class="mt-4 px-4 py-2 bg-white bg-opacity-30 rounded-full">
+                            <span class="text-gray-800 font-semibold">2025-yil</span>
+                        </div>
+                    </div>
+                </div>
+            </div> <br>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- 1-o'rin -->
+                <div class="card english-card rounded-xl p-6 shadow-lg relative overflow-hidden">
+                    <div class="absolute top-4 right-4 medal">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-yellow-600" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm.707-10.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L9.414 11H13a1 1 0 100-2H9.414l1.293-1.293z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="O'quvchi" class="avatar w-24 h-24 rounded-full mb-4 object-cover">
+                        <h3 class="text-xl font-bold text-gray-800 mb-1">Smith John</h3>
+                        <p class="text-gray-700 text-sm mb-3 text-center">Xalqaro bosqich, Gumanitar</p>
+                        <div class="mt-4 px-4 py-2 bg-white bg-opacity-30 rounded-full">
+                            <span class="text-gray-800 font-semibold">2025-yil</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2-o'rin -->
+                <div class="card english-card rounded-xl p-6 shadow-lg relative overflow-hidden">
+                    <div class="absolute top-4 right-4 medal">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v3.586L7.707 9.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 10.586V7z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <img src="https://randomuser.me/api/portraits/women/33.jpg" alt="O'quvchi" class="avatar w-24 h-24 rounded-full mb-4 object-cover">
+                        <h3 class="text-xl font-bold text-gray-800 mb-1">Johnson Emily</h3>
+                        <p class="text-gray-700 text-sm mb-3 text-center">Xalqaro bosqich, Gumanitar</p>
+                        <div class="mt-4 px-4 py-2 bg-white bg-opacity-30 rounded-full">
+                            <span class="text-gray-800 font-semibold">2025-yil</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3-o'rin -->
+                <div class="card english-card rounded-xl p-6 shadow-lg relative overflow-hidden">
+                    <div class="absolute top-4 right-4 medal">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-amber-800" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M12.395 2.553a1 1 0 00-1.45-.385c-.345.23-.614.558-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 00-.613 3.58 2.64 2.64 0 01-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 005.05 6.05 6.981 6.981 0 003 11a7 7 0 1011.95-4.95c-.592-.591-.98-.985-1.348-1.467-.363-.476-.724-1.063-1.207-2.03zM12.12 15.12A3 3 0 017 13s.879.5 2.5.5c0-1 .5-4 1.25-4.5.5 1 .786 1.293 1.371 1.879A2.99 2.99 0 0113 13a2.99 2.99 0 01-.879 2.121z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="O'quvchi" class="avatar w-24 h-24 rounded-full mb-4 object-cover">
+                        <h3 class="text-xl font-bold text-gray-800 mb-1">Williams David</h3>
+                        <p class="text-gray-700 text-sm mb-3 text-center">Xalqaro bosqich, Gumanitar</p>
+                        <div class="mt-4 px-4 py-2 bg-white bg-opacity-30 rounded-full">
+                            <span class="text-gray-800 font-semibold">2025-yil</span>
+                        </div>
+                    </div>
+                </div>
+            </div><br>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- 1-o'rin -->
+                <div class="card english-card rounded-xl p-6 shadow-lg relative overflow-hidden">
+                    <div class="absolute top-4 right-4 medal">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-yellow-600" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm.707-10.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L9.414 11H13a1 1 0 100-2H9.414l1.293-1.293z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="O'quvchi" class="avatar w-24 h-24 rounded-full mb-4 object-cover">
+                        <h3 class="text-xl font-bold text-gray-800 mb-1">Smith John</h3>
+                        <p class="text-gray-700 text-sm mb-3 text-center">Xalqaro bosqich, Gumanitar</p>
+                        <div class="mt-4 px-4 py-2 bg-white bg-opacity-30 rounded-full">
+                            <span class="text-gray-800 font-semibold">2025-yil</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2-o'rin -->
+                <div class="card english-card rounded-xl p-6 shadow-lg relative overflow-hidden">
+                    <div class="absolute top-4 right-4 medal">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v3.586L7.707 9.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 10.586V7z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <img src="https://randomuser.me/api/portraits/women/33.jpg" alt="O'quvchi" class="avatar w-24 h-24 rounded-full mb-4 object-cover">
+                        <h3 class="text-xl font-bold text-gray-800 mb-1">Johnson Emily</h3>
+                        <p class="text-gray-700 text-sm mb-3 text-center">Xalqaro bosqich, Gumanitar</p>
+                        <div class="mt-4 px-4 py-2 bg-white bg-opacity-30 rounded-full">
+                            <span class="text-gray-800 font-semibold">2025-yil</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3-o'rin -->
+                <div class="card english-card rounded-xl p-6 shadow-lg relative overflow-hidden">
+                    <div class="absolute top-4 right-4 medal">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-amber-800" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M12.395 2.553a1 1 0 00-1.45-.385c-.345.23-.614.558-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 00-.613 3.58 2.64 2.64 0 01-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 005.05 6.05 6.981 6.981 0 003 11a7 7 0 1011.95-4.95c-.592-.591-.98-.985-1.348-1.467-.363-.476-.724-1.063-1.207-2.03zM12.12 15.12A3 3 0 017 13s.879.5 2.5.5c0-1 .5-4 1.25-4.5.5 1 .786 1.293 1.371 1.879A2.99 2.99 0 0113 13a2.99 2.99 0 01-.879 2.121z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="O'quvchi" class="avatar w-24 h-24 rounded-full mb-4 object-cover">
+                        <h3 class="text-xl font-bold text-gray-800 mb-1">Williams David</h3>
+                        <p class="text-gray-700 text-sm mb-3 text-center">Xalqaro bosqich, Gumanitar</p>
+                        <div class="mt-4 px-4 py-2 bg-white bg-opacity-30 rounded-full">
+                            <span class="text-gray-800 font-semibold">2025-yil</span>
+                        </div>
+                    </div>
+                </div>
+            </div><br><div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            
+          
+        </div>
+
+        <!-- Biologiya bo'limi -->
+        <div class="mb-20">
+            <h2 class="text-2xl md:text-3xl font-bold mb-8 biology-title border-b-2 pb-2">
+                <span class="inline-block mr-2"></span> Tarix
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- 1-o'rin -->
+                <div class="card biology-card rounded-xl p-6 shadow-lg relative overflow-hidden">
+                    <div class="absolute top-4 right-4 medal">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-yellow-600" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm.707-10.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L9.414 11H13a1 1 0 100-2H9.414l1.293-1.293z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <img src="https://randomuser.me/api/portraits/women/52.jpg" alt="O'quvchi" class="avatar w-24 h-24 rounded-full mb-4 object-cover">
+                        <h3 class="text-xl font-bold text-gray-800 mb-1">Kim Sanobar</h3>
+                        <p class="text-gray-700 text-sm mb-3 text-center">Respublika bosqichi, Tabiiy fanlar</p>
+                        <div class="mt-4 px-4 py-2 bg-white bg-opacity-30 rounded-full">
+                            <span class="text-gray-800 font-semibold">2025-yil</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2-o'rin -->
+                <div class="card biology-card rounded-xl p-6 shadow-lg relative overflow-hidden">
+                    <div class="absolute top-4 right-4 medal">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v3.586L7.707 9.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 10.586V7z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <img src="https://randomuser.me/api/portraits/men/88.jpg" alt="O'quvchi" class="avatar w-24 h-24 rounded-full mb-4 object-cover">
+                        <h3 class="text-xl font-bold text-gray-800 mb-1">Lee Farhod</h3>
+                        <p class="text-gray-700 text-sm mb-3 text-center">Respublika bosqichi, Tabiiy fanlar</p>
+                        <div class="mt-4 px-4 py-2 bg-white bg-opacity-30 rounded-full">
+                            <span class="text-gray-800 font-semibold">2025-yil</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3-o'rin -->
+                <div class="card biology-card rounded-xl p-6 shadow-lg relative overflow-hidden">
+                    <div class="absolute top-4 right-4 medal">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-amber-800" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M12.395 2.553a1 1 0 00-1.45-.385c-.345.23-.614.558-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 00-.613 3.58 2.64 2.64 0 01-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 005.05 6.05 6.981 6.981 0 003 11a7 7 0 1011.95-4.95c-.592-.591-.98-.985-1.348-1.467-.363-.476-.724-1.063-1.207-2.03zM12.12 15.12A3 3 0 017 13s.879.5 2.5.5c0-1 .5-4 1.25-4.5.5 1 .786 1.293 1.371 1.879A2.99 2.99 0 0113 13a2.99 2.99 0 01-.879 2.121z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <img src="https://randomuser.me/api/portraits/women/77.jpg" alt="O'quvchi" class="avatar w-24 h-24 rounded-full mb-4 object-cover">
+                        <h3 class="text-xl font-bold text-gray-800 mb-1">Park Dilnoza</h3>
+                        <p class="text-gray-700 text-sm mb-3 text-center">Respublika bosqichi, Tabiiy fanlar</p>
+                        <div class="mt-4 px-4 py-2 bg-white bg-opacity-30 rounded-full">
+                            <span class="text-gray-800 font-semibold">2025-yil</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- 1-o'rin -->
+                <div class="card biology-card rounded-xl p-6 shadow-lg relative overflow-hidden">
+                    <div class="absolute top-4 right-4 medal">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-yellow-600" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm.707-10.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L9.414 11H13a1 1 0 100-2H9.414l1.293-1.293z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <img src="https://randomuser.me/api/portraits/women/52.jpg" alt="O'quvchi" class="avatar w-24 h-24 rounded-full mb-4 object-cover">
+                        <h3 class="text-xl font-bold text-gray-800 mb-1">Kim Sanobar</h3>
+                        <p class="text-gray-700 text-sm mb-3 text-center">Respublika bosqichi, Tabiiy fanlar</p>
+                        <div class="mt-4 px-4 py-2 bg-white bg-opacity-30 rounded-full">
+                            <span class="text-gray-800 font-semibold">2025-yil</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2-o'rin -->
+                <div class="card biology-card rounded-xl p-6 shadow-lg relative overflow-hidden">
+                    <div class="absolute top-4 right-4 medal">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v3.586L7.707 9.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 10.586V7z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <img src="https://randomuser.me/api/portraits/men/88.jpg" alt="O'quvchi" class="avatar w-24 h-24 rounded-full mb-4 object-cover">
+                        <h3 class="text-xl font-bold text-gray-800 mb-1">Lee Farhod</h3>
+                        <p class="text-gray-700 text-sm mb-3 text-center">Respublika bosqichi, Tabiiy fanlar</p>
+                        <div class="mt-4 px-4 py-2 bg-white bg-opacity-30 rounded-full">
+                            <span class="text-gray-800 font-semibold">2025-yil</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3-o'rin -->
+                <div class="card biology-card rounded-xl p-6 shadow-lg relative overflow-hidden">
+                    <div class="absolute top-4 right-4 medal">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-amber-800" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M12.395 2.553a1 1 0 00-1.45-.385c-.345.23-.614.558-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 00-.613 3.58 2.64 2.64 0 01-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 005.05 6.05 6.981 6.981 0 003 11a7 7 0 1011.95-4.95c-.592-.591-.98-.985-1.348-1.467-.363-.476-.724-1.063-1.207-2.03zM12.12 15.12A3 3 0 017 13s.879.5 2.5.5c0-1 .5-4 1.25-4.5.5 1 .786 1.293 1.371 1.879A2.99 2.99 0 0113 13a2.99 2.99 0 01-.879 2.121z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <img src="https://randomuser.me/api/portraits/women/77.jpg" alt="O'quvchi" class="avatar w-24 h-24 rounded-full mb-4 object-cover">
+                        <h3 class="text-xl font-bold text-gray-800 mb-1">Park Dilnoza</h3>
+                        <p class="text-gray-700 text-sm mb-3 text-center">Respublika bosqichi, Tabiiy fanlar</p>
+                        <div class="mt-4 px-4 py-2 bg-white bg-opacity-30 rounded-full">
+                            <span class="text-gray-800 font-semibold">2025-yil</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- 1-o'rin -->
+                <div class="card biology-card rounded-xl p-6 shadow-lg relative overflow-hidden">
+                    <div class="absolute top-4 right-4 medal">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-yellow-600" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm.707-10.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L9.414 11H13a1 1 0 100-2H9.414l1.293-1.293z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <img src="https://randomuser.me/api/portraits/women/52.jpg" alt="O'quvchi" class="avatar w-24 h-24 rounded-full mb-4 object-cover">
+                        <h3 class="text-xl font-bold text-gray-800 mb-1">Kim Sanobar</h3>
+                        <p class="text-gray-700 text-sm mb-3 text-center">Respublika bosqichi, Tabiiy fanlar</p>
+                        <div class="mt-4 px-4 py-2 bg-white bg-opacity-30 rounded-full">
+                            <span class="text-gray-800 font-semibold">2025-yil</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2-o'rin -->
+                <div class="card biology-card rounded-xl p-6 shadow-lg relative overflow-hidden">
+                    <div class="absolute top-4 right-4 medal">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v3.586L7.707 9.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 10.586V7z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <img src="https://randomuser.me/api/portraits/men/88.jpg" alt="O'quvchi" class="avatar w-24 h-24 rounded-full mb-4 object-cover">
+                        <h3 class="text-xl font-bold text-gray-800 mb-1">Lee Farhod</h3>
+                        <p class="text-gray-700 text-sm mb-3 text-center">Respublika bosqichi, Tabiiy fanlar</p>
+                        <div class="mt-4 px-4 py-2 bg-white bg-opacity-30 rounded-full">
+                            <span class="text-gray-800 font-semibold">2025-yil</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3-o'rin -->
+                <div class="card biology-card rounded-xl p-6 shadow-lg relative overflow-hidden">
+                    <div class="absolute top-4 right-4 medal">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-amber-800" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M12.395 2.553a1 1 0 00-1.45-.385c-.345.23-.614.558-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 00-.613 3.58 2.64 2.64 0 01-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 005.05 6.05 6.981 6.981 0 003 11a7 7 0 1011.95-4.95c-.592-.591-.98-.985-1.348-1.467-.363-.476-.724-1.063-1.207-2.03zM12.12 15.12A3 3 0 017 13s.879.5 2.5.5c0-1 .5-4 1.25-4.5.5 1 .786 1.293 1.371 1.879A2.99 2.99 0 0113 13a2.99 2.99 0 01-.879 2.121z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <img src="https://randomuser.me/api/portraits/women/77.jpg" alt="O'quvchi" class="avatar w-24 h-24 rounded-full mb-4 object-cover">
+                        <h3 class="text-xl font-bold text-gray-800 mb-1">Park Dilnoza</h3>
+                        <p class="text-gray-700 text-sm mb-3 text-center">Respublika bosqichi, Tabiiy fanlar</p>
+                        <div class="mt-4 px-4 py-2 bg-white bg-opacity-30 rounded-full">
+                            <span class="text-gray-800 font-semibold">2025-yil</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</body>
+</html>
