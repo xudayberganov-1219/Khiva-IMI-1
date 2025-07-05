@@ -65,7 +65,40 @@
             overflow-x: hidden;
             background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
         }
-        
+        ::-webkit-scrollbar {
+            width: 50px;
+            height: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(11, 58, 189, 0.1); /* Semi-transparent blue matching header */
+            border-radius: 10px;
+            margin: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #0b3abd 0%, #1e88e5 100%); /* Blue gradient matching site theme */
+            border-radius: 10px;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #1e88e5 0%, #0b3abd 100%); /* Reverse gradient on hover */
+        }
+
+        /* Dark mode adjustments */
+        .dark ::-webkit-scrollbar-track {
+            background: rgba(30, 136, 229, 0.1); /* Lighter blue for dark mode */
+        }
+
+        .dark ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #1e88e5 0%, #0d47a1 100%); /* Darker blue gradient */
+            border: 3px solid rgba(0, 0, 0, 0.2);
+        }
+
+        .dark ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #0d47a1 0%, #1e88e5 100%);
+        }
         .dark {
             --light-color: #1e293b;
             --dark-color: #f8fafc;
@@ -573,6 +606,39 @@
             background: linear-gradient(135deg, #f44336, #ef5350);
             color: white;
             border-color: #f44336;
+        }
+                /* Custom Scrollbar Styles */
+       
+
+        /* Corner style */
+        ::-webkit-scrollbar-corner {
+            background: transparent;
+        }
+
+        /* For specific containers (like certificate gallery) */
+        .scroll-container {
+            scrollbar-width: thin;
+            scrollbar-color: #0b3abd rgba(11, 58, 189, 0.1);
+        }
+
+        .scroll-container::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom scrollbar for specific containers */
+        .scroll-container {
+            scrollbar-width: thin;
+            scrollbar-color: var(--scrollbar-thumb-bg, #888) var(--scrollbar-track-bg, #f1f1f1);
+        }
+
+        .scroll-container::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
         }
 
         /* Decorative Sidebar */
