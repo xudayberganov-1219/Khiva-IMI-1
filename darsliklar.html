@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Darsliklar - Xiva 1-son Maktab-Internati</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0b3abd;
+      --primary-light: #1e88e5;
+      --secondary: #10b981;
+      --dark: #1e293b;
+      --light: #f8fafc;
+      --gray: #94a3b8;
+      --card-bg: #ffffff;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f0f4f8;
+      color: var(--dark);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header Styles */
+    header {
+      background-color: var(--primary);
+      color: white;
+      padding: 1rem 0;
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo img {
+      height: 40px;
+    }
+
+    nav {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: opacity 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    nav a:hover {
+      opacity: 0.9;
+    }
+
+    /* Main Content */
+    main {
+      padding: 2rem 0;
+      min-height: calc(100vh - 160px);
+    }
+
+    .page-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .page-header h1 {
+      font-size: 2rem;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .page-header p {
+      color: var(--gray);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* Grade Cards */
+    .grade-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .grade-card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .grade-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .grade-header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .grade-header h2 {
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+
+    .grade-content {
+      padding: 1.5rem;
+    }
+
+    .subject-list {
+      list-style: none;
+    }
+
+    .subject-item {
+      margin-bottom: 0.75rem;
+    }
+
+    .download-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 0.75rem 1rem;
+      background-color: rgba(11, 58, 189, 0.1);
+      color: var(--primary);
+      border: none;
+      border-radius: 8px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+
+    .download-btn:hover {
+      background-color: rgba(11, 58, 189, 0.2);
+      transform: translateX(5px);
+    }
+
+    .download-btn .material-icons {
+      font-size: 1.25rem;
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--dark);
+      color: white;
+      padding: 2rem 0;
+      margin-top: 3rem;
+    }
+
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .footer-logo {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .copyright {
+      color: var(--gray);
+      font-size: 0.875rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header-container {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      nav {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: rgba(11, 58, 189, 0.1);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container header-container">
+    <div class="logo">
+      <img src="https://xivaimi1.vercel.app/logo.png" alt="Xiva IMI Logo">
+      <span>Xiva 1-son Maktab-Internati</span>
+    </div>
+    <nav>
+      <a href="https://xivaimi1.vercel.app/">
+        <span class="material-icons">home</span>
+        Bosh sahifa
+      </a>
+      <a href="#">
+        <span class="material-icons">menu_book</span>
+        Darsliklar
+      </a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+    <div class="page-header">
+      <h1>5–11-sinf Darsliklari</h1>
+      <p>O'quvchilarimiz uchun barcha sinflar bo'yicha elektron darsliklar to'plami</p>
+    </div>
+
+    <div class="grade-container" id="gradesContainer"></div>
+  </div>
+</main>
+
+<footer>
+  <div class="container footer-content">
+    <div class="footer-logo">Xiva 1-son Ixtisoslashtirilgan Maktab-Internati</div>
+    <p class="copyright">&copy; 2025 Barcha huquqlar himoyalangan. Sayt yaratuvchisi: Ilyos Xudayberganov</p>
+  </div>
+</footer>
+
+<script>
+  // Textbook data with Google Drive download links
+  const textbooks = {
+    "5-sinf": [
+      { name: "Algebra", link: "https://drive.google.com/uc?export=download&id=1XxXxXxXxXxXxXxXxXxXxXxXxXxXxX" },
+      { name: "Geometriya", link: "https://drive.google.com/uc?export=download&id=2YyYyYyYyYyYyYyYyYyYyYyYyYyYyY" },
+      { name: "Ingliz tili", link: "https://drive.google.com/uc?export=download&id=3ZzZzZzZzZzZzZzZzZzZzZzZzZzZzZ" },
+      { name: "Rus tili", link: "https://drive.google.com/uc?export=download&id=4AaAaAaAaAaAaAaAaAaAaAaAaAaAaAaA" },
+      { name: "O'zbekiston tarixi", link: "https://drive.google.com/uc?export=download&id=5BbBbBbBbBbBbBbBbBbBbBbBbBbBbBbB" },
+      { name: "Fizika", link: "https://drive.google.com/uc?export=download&id=6CcCcCcCcCcCcCcCcCcCcCcCcCcCcCcC" }
+    ],
+    "6-sinf": [
+      { name: "Algebra", link: "https://drive.google.com/uc?export=download&id=7DdDdDdDdDdDdDdDdDdDdDdDdDdDdDd" },
+      { name: "Geometriya", link: "https://drive.google.com/uc?export=download&id=8EeEeEeEeEeEeEeEeEeEeEeEeEeEeE" },
+      { name: "Ingliz tili", link: "https://drive.google.com/uc?export=download&id=9FfFfFfFfFfFfFfFfFfFfFfFfFfFfFf" },
+      { name: "Rus tili", link: "https://drive.google.com/uc?export=download&id=1GgGgGgGgGgGgGgGgGgGgGgGgGgGgG" },
+      { name: "Jahon tarixi", link: "https://drive.google.com/uc?export=download&id=2HhHhHhHhHhHhHhHhHhHhHhHhHhHhH" },
+      { name: "Fizika", link: "https://drive.google.com/uc?export=download&id=3IiIiIiIiIiIiIiIiIiIiIiIiIiIiIiI" }
+    ],
+    "7-sinf": [
+      { name: "Algebra", link: "https://drive.google.com/uc?export=download&id=4JjJjJjJjJjJjJjJjJjJjJjJjJjJjJj" },
+      { name: "Geometriya", link: "https://drive.google.com/uc?export=download&id=5KkKkKkKkKkKkKkKkKkKkKkKkKkKkKk" },
+      { name: "Ingliz tili", link: "https://drive.google.com/uc?export=download&id=6LlLlLlLlLlLlLlLlLlLlLlLlLlLlLlL" },
+      { name: "Rus tili", link: "https://drive.google.com/uc?export=download&id=7MmMmMmMmMmMmMmMmMmMmMmMmMmMmMmM" },
+      { name: "O'zbekiston tarixi", link: "https://drive.google.com/uc?export=download&id=8NnNnNnNnNnNnNnNnNnNnNnNnNnNnNn" },
+      { name: "Fizika", link: "https://drive.google.com/uc?export=download&id=9OoOoOoOoOoOoOoOoOoOoOoOoOoOoOo" }
+    ],
+    "8-sinf": [
+      { name: "Algebra", link: "https://drive.google.com/uc?export=download&id=1PpPpPpPpPpPpPpPpPpPpPpPpPpPpPp" },
+      { name: "Geometriya", link: "https://drive.google.com/uc?export=download&id=2QqQqQqQqQqQqQqQqQqQqQqQqQqQqQq" },
+      { name: "Ingliz tili", link: "https://drive.google.com/uc?export=download&id=3RrRrRrRrRrRrRrRrRrRrRrRrRrRrRr" },
+      { name: "Rus tili", link: "https://drive.google.com/uc?export=download&id=4SsSsSsSsSsSsSsSsSsSsSsSsSsSsSsS" },
+      { name: "Jahon tarixi", link: "https://drive.google.com/uc?export=download&id=5TtTtTtTtTtTtTtTtTtTtTtTtTtTtTt" },
+      { name: "Fizika", link: "https://drive.google.com/uc?export=download&id=6UuUuUuUuUuUuUuUuUuUuUuUuUuUuUu" }
+    ],
+    "9-sinf": [
+      { name: "Algebra", link: "https://drive.google.com/uc?export=download&id=7VvVvVvVvVvVvVvVvVvVvVvVvVvVvVv" },
+      { name: "Geometriya", link: "https://drive.google.com/uc?export=download&id=8WwWwWwWwWwWwWwWwWwWwWwWwWwWwWw" },
+      { name: "Ingliz tili", link: "https://drive.google.com/uc?export=download&id=9XxXxXxXxXxXxXxXxXxXxXxXxXxXxXx" },
+      { name: "Rus tili", link: "https://drive.google.com/uc?export=download&id=1YyYyYyYyYyYyYyYyYyYyYyYyYyYyYy" },
+      { name: "O'zbekiston tarixi", link: "https://drive.google.com/uc?export=download&id=2ZzZzZzZzZzZzZzZzZzZzZzZzZzZzZz" },
+      { name: "Fizika", link: "https://drive.google.com/uc?export=download&id=3AaAaAaAaAaAaAaAaAaAaAaAaAaAaAaAa" }
+    ],
+    "10-sinf": [
+      { name: "Algebra", link: "https://drive.google.com/uc?export=download&id=4BbBbBbBbBbBbBbBbBbBbBbBbBbBbBbBb" },
+      { name: "Geometriya", link: "https://drive.google.com/uc?export=download&id=5CcCcCcCcCcCcCcCcCcCcCcCcCcCcCcCc" },
+      { name: "Ingliz tili", link: "https://drive.google.com/uc?export=download&id=6DdDdDdDdDdDdDdDdDdDdDdDdDdDdDdDd" },
+      { name: "Rus tili", link: "https://drive.google.com/uc?export=download&id=7EeEeEeEeEeEeEeEeEeEeEeEeEeEeEeEe" },
+      { name: "Jahon tarixi", link: "https://drive.google.com/uc?export=download&id=8FfFfFfFfFfFfFfFfFfFfFfFfFfFfFfFf" },
+      { name: "Fizika", link: "https://drive.google.com/uc?export=download&id=9GgGgGgGgGgGgGgGgGgGgGgGgGgGgGgGg" }
+    ],
+    "11-sinf": [
+      { name: "Algebra", link: "https://drive.google.com/uc?export=download&id=1HhHhHhHhHhHhHhHhHhHhHhHhHhHhHhHh" },
+      { name: "Geometriya", link: "https://drive.google.com/uc?export=download&id=2IiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIi" },
+      { name: "Ingliz tili", link: "https://drive.google.com/uc?export=download&id=3JjJjJjJjJjJjJjJjJjJjJjJjJjJjJjJj" },
+      { name: "Rus tili", link: "https://drive.google.com/uc?export=download&id=4KkKkKkKkKkKkKkKkKkKkKkKkKkKkKkKk" },
+      { name: "O'zbekiston tarixi", link: "https://drive.google.com/uc?export=download&id=5LlLlLlLlLlLlLlLlLlLlLlLlLlLlLlLl" },
+      { name: "Fizika", link: "https://drive.google.com/uc?export=download&id=6MmMmMmMmMmMmMmMmMmMmMmMmMmMmMmMm" }
+    ]
+  };
+
+  const container = document.getElementById("gradesContainer");
+
+  // Create grade cards
+  for (const grade in textbooks) {
+    const card = document.createElement("div");
+    card.className = "grade-card";
+    
+    const header = document.createElement("div");
+    header.className = "grade-header";
+    header.innerHTML = `<h2>${grade}</h2>`;
+    
+    const content = document.createElement("div");
+    content.className = "grade-content";
+    
+    const list = document.createElement("ul");
+    list.className = "subject-list";
+    
+    textbooks[grade].forEach(book => {
+      const item = document.createElement("li");
+      item.className = "subject-item";
+      item.innerHTML = `
+        <a href="${book.link}" class="download-btn" download>
+          <span>${book.name}</span>
+          <span class="material-icons">download</span>
+        </a>
+      `;
+      list.appendChild(item);
+    });
+    
+    content.appendChild(list);
+    card.appendChild(header);
+    card.appendChild(content);
+    container.appendChild(card);
+  }
+</script>
+
+</body>
+</html>
