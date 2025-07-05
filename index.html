@@ -14,18 +14,629 @@
     
     <!-- Google Material Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-      <!-- Google Material Icons -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <meta name="description" content="Xorazm viloyati Xiva shahar 1-son ixtisoslashtirilgan maktab-internati. Ushbu maktab zamonaviy labaratoriya jihozlari, o'quvchilar uchun oshxona, futbol, basketbol, valeybol va yugurish maydonchalri tashkil qilingan bo'lib, maktabda 244 nafar o'quvchi taxsil olaladi. O'quvchilar uchun dushanbadan juma kunigacha har kuni 5 mahal ovqat bilan ta'minlanadi. O'quv binosi interaktiv doskalar, qo'shimcha xonalar va ingliz tili, matematika, fizika o'zbeksiton tarixi fanlariga ixtisoslashgan bo'lib, bugungi kunda 20 nafardan ortiq o'quvchi xalqaro va milliy sertifkatga ega bo'lgan. O'quvchilar, o'qituvchialr, yangliklar, milliy va xalqaro sertifikatga ega o'quvchilar, olimpiada g'oliblari..." />
+    
+    <meta name="description" content="Xorazm viloyati Xiva shahar 1-son ixtisoslashtirilgan maktab-internati. Ushbu maktab zamonaviy labaratoriya jihozlari, o'quvchilar uchun oshxona, futbol, basketbol, valeybol va yugurish maydonchalri tashkil qilingan bo'lib, maktabda 244 nafar o'quvchi taxsil olaladi." />
     <meta name="keywords" content="Khiva IMI, 1-son, Ilyos Xudayberganov, 1-son ixtisoslashtirilgan maktab-internati, 1-son IMI, ta'lim, o'zbekiston maktablari, xiva, xiva shahar, maktab, olimpiada, milliy, xalqaro, IELTS, CESR, SAT, khiva news" />
     <meta name="author" content="Ilyos Xudayberganov" />
     <link rel="canonical" href="https://xivaimi1.vercel.app" />
-    <!-- Ijtimoiy tarmoqlar uchun meta teglari -->
+    
+    <!-- Social media meta tags -->
     <meta property="og:title" content="Khiva IMI 1-son - Ilyos Xudayberganov" />
-    <meta property="og:description" content="Xorazm viloyati Xiva shahar 1-son ixtisoslashtirilgan maktab-internati. Ushbu maktab zamonaviy labaratoriya jihozlari, o'quvchilar uchun oshxona, futbol, basketbol, valeybol va yugurish maydonchalri tashkil qilingan bo'lib, maktabda 244 nafar o'quvchi taxsil olaladi. O'quvchilar uchun dushanbadan juma kunigacha har kuni 5 mahal ovqat bilan ta'minlanadi. O'quv binosi interaktiv doskalar, qo'shimcha xonalar va ingliz tili, matematika, fizika o'zbeksiton tarixi fanlariga ixtisoslashgan bo'lib, bugungi kunda 20 nafardan ortiq o'quvchi xalqaro va milliy sertifkatga ega bo'lgan. O'quvchilar, o'qituvchialr, yangliklar, milliy va xalqaro sertifikatga ega o'quvchilar, olimpiada g'oliblari..." />
+    <meta property="og:description" content="Xorazm viloyati Xiva shahar 1-son ixtisoslashtirilgan maktab-internati." />
     <meta property="og:url" content="https://xivaimi1.vercel.app" />
     <meta property="og:type" content="website" />
     
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #7c3aed;
+            --accent-color: #f59e0b;
+            --success-color: #10b981;
+            --danger-color: #ef4444;
+            --warning-color: #f59e0b;
+            --info-color: #3b82f6;
+            --light-color: #f8fafc;
+            --dark-color: #1e293b;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-400: #94a3b8;
+            --gray-500: #64748b;
+            --gray-600: #475569;
+            --gray-700: #334155;
+            --gray-800: #1e293b;
+            --gray-900: #0f172a;
+            --border-radius: 0.75rem;
+            --box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --box-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--gray-800);
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+        }
+
+        /* Loading Screen Styles */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            transition: opacity 1s ease-out, visibility 1s ease-out;
+        }
+
+        .loading-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        /* Animated Background Elements */
+        .bg-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .floating-shape {
+            position: absolute;
+            opacity: 0.1;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .floating-shape:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            width: 60px;
+            height: 60px;
+            background: #4f46e5;
+            border-radius: 50%;
+            animation-delay: 0s;
+        }
+
+        .floating-shape:nth-child(2) {
+            top: 60%;
+            right: 15%;
+            width: 40px;
+            height: 40px;
+            background: #f59e0b;
+            border-radius: 8px;
+            animation-delay: 2s;
+        }
+
+        .floating-shape:nth-child(3) {
+            bottom: 20%;
+            left: 20%;
+            width: 50px;
+            height: 50px;
+            background: #4f46e5;
+            border-radius: 12px;
+            animation-delay: 4s;
+        }
+
+        .floating-shape:nth-child(4) {
+            top: 30%;
+            right: 30%;
+            width: 35px;
+            height: 35px;
+            background: #f59e0b;
+            border-radius: 50%;
+            animation-delay: 1s;
+        }
+
+        .floating-shape:nth-child(5) {
+            bottom: 40%;
+            left: 60%;
+            width: 45px;
+            height: 45px;
+            background: #4f46e5;
+            border-radius: 16px;
+            animation-delay: 3s;
+        }
+
+        @keyframes float {
+            0%, 100% { 
+                transform: translateY(0px) rotate(0deg);
+                opacity: 0.1;
+            }
+            50% { 
+                transform: translateY(-30px) rotate(180deg);
+                opacity: 0.2;
+            }
+        }
+
+        /* Loading Container */
+        .loading-container {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 60px 50px;
+            border: 1px solid rgba(79, 70, 229, 0.2);
+            box-shadow: 
+                0 25px 50px rgba(79, 70, 229, 0.1),
+                0 0 0 1px rgba(255, 255, 255, 0.8);
+            animation: slideIn 1s ease-out;
+            max-width: 450px;
+            width: 90%;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(50px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Logo Section */
+        .logo-section {
+            margin-bottom: 40px;
+        }
+
+        .logo-container {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 25px;
+            position: relative;
+            animation: logoFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes logoFloat {
+            0%, 100% { 
+                transform: translateY(0px) scale(1);
+            }
+            50% { 
+                transform: translateY(-10px) scale(1.05);
+            }
+        }
+
+        .logo-image {
+            width: 100%;
+            height: 100%;
+            border-radius: 20px;
+            object-fit: contain;
+            background: white;
+            padding: 8px;
+            box-shadow: 
+                0 10px 30px rgba(79, 70, 229, 0.2),
+                0 0 0 3px rgba(79, 70, 229, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .logo-glow {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: linear-gradient(45deg, #4f46e5, #7c3aed, #4f46e5);
+            border-radius: 25px;
+            opacity: 0.3;
+            animation: glow 2s ease-in-out infinite alternate;
+            z-index: -1;
+        }
+
+        @keyframes glow {
+            from { 
+                opacity: 0.3;
+                transform: scale(1);
+            }
+            to { 
+                opacity: 0.6;
+                transform: scale(1.1);
+            }
+        }
+
+        .site-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .site-subtitle {
+            color: #6b7280;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        /* Loading Animation */
+        .loading-section {
+            margin: 50px 0;
+        }
+
+        .loading-spinner {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 30px;
+            position: relative;
+        }
+
+        .spinner-ring {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 4px solid rgba(79, 70, 229, 0.2);
+            border-radius: 50%;
+            border-top: 4px solid #4f46e5;
+            animation: spin 1s linear infinite;
+        }
+
+        .spinner-ring:nth-child(2) {
+            width: 60px;
+            height: 60px;
+            top: 10px;
+            left: 10px;
+            border-top: 4px solid #7c3aed;
+            animation: spin 1.5s linear infinite reverse;
+        }
+
+        .spinner-ring:nth-child(3) {
+            width: 40px;
+            height: 40px;
+            top: 20px;
+            left: 20px;
+            border-top: 4px solid #f59e0b;
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            color: #374151;
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 15px;
+            animation: fadeInOut 2s infinite;
+        }
+
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+
+        .loading-progress {
+            width: 300px;
+            height: 8px;
+            background: rgba(79, 70, 229, 0.2);
+            border-radius: 4px;
+            margin: 0 auto;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #4f46e5, #7c3aed, #f59e0b);
+            background-size: 200% 100%;
+            border-radius: 4px;
+            animation: loading 3.5s ease-in-out, shimmer 2s infinite;
+            width: 0%;
+        }
+
+        @keyframes loading {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        .loading-percentage {
+            color: #6b7280;
+            font-size: 1rem;
+            margin-top: 15px;
+            font-weight: 600;
+        }
+
+        /* Success Animation */
+        .success-container {
+            display: none;
+            animation: successSlide 0.8s ease-out;
+        }
+
+        @keyframes successSlide {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: successPulse 1s ease-in-out;
+        }
+
+        @keyframes successPulse {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        .success-icon::after {
+            content: '✓';
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+        }
+
+        .success-text {
+            color: #10b981;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .redirect-text {
+            color: #6b7280;
+            font-size: 1rem;
+            animation: dots 1.5s infinite;
+        }
+
+        @keyframes dots {
+            0%, 20% { content: 'Saytga yo\'naltirilmoqda'; }
+            40% { content: 'Saytga yo\'naltirilmoqda.'; }
+            60% { content: 'Saytga yo\'naltirilmoqda..'; }
+            80%, 100% { content: 'Saytga yo\'naltirilmoqda...'; }
+        }
+
+        /* Main Content - Initially Hidden */
+        .main-content {
+            display: none;
+        }
+
+        .main-content.show {
+            display: block;
+            animation: fadeInContent 1s ease-out;
+        }
+
+        @keyframes fadeInContent {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 480px) {
+            .loading-container {
+                margin: 20px;
+                padding: 40px 30px;
+            }
+            
+            .site-title {
+                font-size: 1.6rem;
+            }
+            
+            .loading-progress {
+                width: 250px;
+            }
+            
+            .logo-container {
+                width: 100px;
+                height: 100px;
+            }
+        }
+
+        /* Fade out animation */
+        .fade-out {
+            animation: fadeOut 1s ease-in-out forwards;
+        }
+
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+            to {
+                opacity: 0;
+                transform: translateY(-30px) scale(0.9);
+            }
+        }
+
+        /* Rest of your existing styles... */
+        /* (I'll include the essential ones for the demo) */
+        
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--gray-200);
+            transition: var(--transition);
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .logo-icon img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid #2196f3;
+            box-shadow: 1px 1px 10px #42a5f5;
+        }
+
+        .logo-text {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 1.25rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 0.6rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            position: relative;
+            color: var(--gray-700);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color);
+            background: rgba(37, 99, 235, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #f8fafc 0%, #ffffff 50%, #f0f9ff 100%);
+            position: relative;
+            overflow: hidden;
+            padding-top: 5rem;
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 10;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            color: var(--gray-900);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color), #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-description {
+            font-size: 1.25rem;
+            color: var(--gray-600);
+            margin-bottom: 2.5rem;
+            line-height: 1.7;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+            position: relative;
+            overflow: hidden;
+            margin: 0.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.4);
+        }
+
+        /* Add more essential styles as needed */
+    </style>
     <style>
         :root {
             --primary-color: #2563eb;
@@ -65,6 +676,7 @@
             overflow-x: hidden;
             background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
         }
+        
         ::-webkit-scrollbar {
             width: 50px;
             height: 12px;
@@ -2261,7 +2873,55 @@
     </style>
 </head>
 <body>
-    <!-- Language Selector -->
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="bg-animation">
+            <div class="floating-shape"></div>
+            <div class="floating-shape"></div>
+            <div class="floating-shape"></div>
+            <div class="floating-shape"></div>
+            <div class="floating-shape"></div>
+        </div>
+
+        <div class="loading-container" id="loadingContainer">
+            <div class="logo-section">
+                <div class="logo-container">
+                    <div class="logo-glow"></div>
+                    <img 
+                        src="https://khiva-imi-1.vercel.app/converted(1).png" 
+                        alt="Khiva IMI-1 Logo" 
+                        class="logo-image"
+                        onerror="this.style.display='none'"
+                    >
+                </div>
+                <h1 class="site-title">Khiva IMI-1</h1>
+                <p class="site-subtitle">Ixtisoslashtirilgan ta'lim muassasasi</p>
+            </div>
+
+            <div class="loading-section" id="loadingSection">
+                <div class="loading-spinner">
+                    <div class="spinner-ring"></div>
+                    <div class="spinner-ring"></div>
+                    <div class="spinner-ring"></div>
+                </div>
+                <p class="loading-text" id="loadingText">Sahifa yuklanmoqda...</p>
+                <div class="loading-progress">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+                <p class="loading-percentage" id="loadingPercentage">0%</p>
+            </div>
+
+            <div class="success-container" id="successContainer">
+                <div class="success-icon"></div>
+                <p class="success-text">Tayyor!</p>
+                <p class="redirect-text">Sayt ochilmoqda...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content" id="mainContent">
+        <!-- Language Selector -->
     <div class="language-selector">
         <select id="languageSelect" onchange="changeLanguage(this.value)">
             <option value="uz">🇺🇿 </option>
@@ -3406,8 +4066,120 @@
                 <a class="footer-credit" href="./admin.html" style="text-decoration: none;" data-translate="website_creator_credit">Sayt yaratuvchisi: Ilyos Xudayberganov</a>
             </div>
         </div>
-    </footer>
+    </footer> 
+    </div>
 
+    <script>
+        // Loading functionality
+        const loadingTexts = [
+            'Sahifa yuklanmoqda...',
+            'Ma\'lumotlar tayyorlanmoqda...',
+            'Kontent yuklanmoqda...',
+            'Deyarli tayyor...'
+        ];
+
+        let currentTextIndex = 0;
+        let currentPercentage = 0;
+        
+        const loadingTextElement = document.getElementById('loadingText');
+        const loadingPercentageElement = document.getElementById('loadingPercentage');
+        const loadingSection = document.getElementById('loadingSection');
+        const successContainer = document.getElementById('successContainer');
+        const loadingScreen = document.getElementById('loadingScreen');
+        const mainContent = document.getElementById('mainContent');
+
+        // Change loading text every 800ms
+        const textInterval = setInterval(() => {
+            currentTextIndex = (currentTextIndex + 1) % loadingTexts.length;
+            loadingTextElement.textContent = loadingTexts[currentTextIndex];
+        }, 800);
+
+        // Update percentage smoothly
+        const percentageInterval = setInterval(() => {
+            if (currentPercentage < 100) {
+                currentPercentage += Math.random() * 12 + 3;
+                if (currentPercentage > 100) currentPercentage = 100;
+                loadingPercentageElement.textContent = Math.floor(currentPercentage) + '%';
+            }
+        }, 150);
+
+        // Complete loading process
+        setTimeout(() => {
+            // Clear intervals
+            clearInterval(textInterval);
+            clearInterval(percentageInterval);
+            
+            // Set to 100%
+            currentPercentage = 100;
+            loadingPercentageElement.textContent = '100%';
+            
+            // Show success animation
+            setTimeout(() => {
+                loadingSection.style.display = 'none';
+                successContainer.style.display = 'block';
+                
+                // Show main content after success animation
+                setTimeout(() => {
+                    loadingScreen.classList.add('hidden');
+                    
+                    setTimeout(() => {
+                        loadingScreen.style.display = 'none';
+                        mainContent.classList.add('show');
+                    }, 1000);
+                }, 1500);
+                
+            }, 300);
+            
+        }, 3500); // Total loading time: 3.5 seconds
+
+        // Interactive mouse effects
+        document.addEventListener('mousemove', function(e) {
+            const shapes = document.querySelectorAll('.floating-shape');
+            const mouseX = e.clientX / window.innerWidth;
+            const mouseY = e.clientY / window.innerHeight;
+            
+            shapes.forEach((shape, index) => {
+                const speed = (index + 1) * 0.3;
+                const x = (mouseX - 0.5) * speed;
+                const y = (mouseY - 0.5) * speed;
+                
+                shape.style.transform += ` translate(${x}px, ${y}px)`;
+            });
+        });
+
+        // Skip loading on spacebar press (for testing)
+        document.addEventListener('keydown', function(e) {
+            if (e.code === 'Space') {
+                e.preventDefault();
+                // Skip to main content
+                clearInterval(textInterval);
+                clearInterval(percentageInterval);
+                loadingScreen.classList.add('hidden');
+                setTimeout(() => {
+                    loadingScreen.style.display = 'none';
+                    mainContent.classList.add('show');
+                }, 500);
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
     <script>
         // Global variables
         let isDarkMode = false;
