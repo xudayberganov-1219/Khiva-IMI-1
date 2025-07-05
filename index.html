@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Xiva shahar 1-son ixtisoslashtirilgan maktab-internati</title>
-    <link rel="shortcut icon" href="logo.jpg" type="image/x-icon">
+    <link rel="shortcut icon" href="./logo.jpg" type="image/x-icon">
     
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -1520,6 +1520,229 @@
             display: inline-block;
         }
 
+         .admission-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #3498db, #2980b9);
+            border-radius: 2px;
+        }
+
+        .section-description {
+            font-size: 1.1rem;
+            color: #7f8c8d;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .steps-container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .step-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .step-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .step-header {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            padding: 25px 30px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .step-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="10" r="0.5" fill="rgba(255,255,255,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .step-number {
+            background: rgba(255, 255, 255, 0.2);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .step-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .step-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            flex: 1;
+            position: relative;
+            z-index: 1;
+        }
+
+        .step-content {
+            padding: 30px;
+        }
+
+        .step-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .step-item {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid #3498db;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .step-item:hover {
+            background: #e3f2fd;
+            transform: translateX(5px);
+        }
+
+        .step-item::before {
+            content: '✓';
+            position: absolute;
+            top: 15px;
+            left: -12px;
+            background: #3498db;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .step-item h4 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+
+        .step-item p {
+            color: #7f8c8d;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #e8f5e8 0%, #d4edda 100%);
+            border: 1px solid #c3e6cb;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .highlight-box h4 {
+            color: #155724;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .highlight-box p {
+            color: #155724;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .step-header {
+                padding: 20px;
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+            
+            .step-content {
+                padding: 20px;
+            }
+            
+            .step-list {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
         /* Contact Form */
         .contact-form {
             background: linear-gradient(135deg, #f8fafc, #f0f9ff);
@@ -2250,7 +2473,9 @@
                 </div>
             </div>
         </div>
+        
     </section>
+    
 
     <!-- Chat Widget -->
     <button class="chat-toggle" onclick="toggleChat()">
@@ -2360,6 +2585,101 @@
                 </div>
             </div>
         </div>
+     <section class="admission-section">
+        <div class="section-header fade-in">
+            <h1 class="section-title">Qabul Jarayoni</h1>
+            <p class="section-description">
+                Ixtisoslashtirilgan maktablarga belgilangan kvota doirasida tegishli sinfni tamomlagan o'quvchilar qabul qilinadi.
+            </p>
+        </div>
+
+        <div class="steps-container">
+            <!-- Step 1 -->
+            <div class="step-card fade-in">
+                <div class="step-header">
+                    <div class="step-number">1</div>
+                    <div class="step-icon">
+                        <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        </svg>
+                    </div>
+                    <h2 class="step-title">Hujjatlar onlayn tarzda veb-sayt orqali qabul komissiyasiga topshiriladi</h2>
+                </div>
+                <div class="step-content">
+                    <div class="step-list">
+                        <div class="step-item">
+                            <h4>Talabgorning tug'ilganlik to'g'risidagi guvohnomasi nusxasi</h4>
+                            <p>Rasmiy tasdiqlangan nusxa talab qilinadi</p>
+                        </div>
+                        <div class="step-item">
+                            <h4>Talabgorning oxirgi 2 oy davomida tushgan fotosurati</h4>
+                            <p>3x4 o'lchamdagi rangli fotosurat</p>
+                        </div>
+                        <div class="step-item">
+                            <h4>O'quvchining tegishli o'quv yili natijalari ko'ra baholash tabellining maktab direktori tomonidan tasdiqlangan nusxasi</h4>
+                            <p>Joriy o'quv yili yakuniy baholarini aks ettiruvchi hujjat</p>
+                        </div>
+                        <div class="step-item">
+                            <h4>Talabgor hamda uning ota-onasi (qonuniy vakili) tomonidan to'ldirilgan passport ma'lumotlari, bog'lanish uchun mobil telefon raqamlari</h4>
+                            <p>To'liq va aniq ma'lumotlar kiritilishi shart</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="step-card fade-in">
+                <div class="step-header">
+                    <div class="step-number">2</div>
+                    <div class="step-icon">
+                        <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M9 11H7v6h2v-6zm4 0h-2v6h2v-6zm4 0h-2v6h2v-6zm2.5-9H18V0h-2v2H8V0H6v2H3.5C2.67 2 2 2.67 2 3.5v15C2 19.33 2.67 20 3.5 20h17c.83 0 1.5-.67 1.5-1.5v-15C22 2.67 21.33 2 20.5 2z"/>
+                        </svg>
+                    </div>
+                    <h2 class="step-title">Imtihon bosqichlari</h2>
+                </div>
+                <div class="step-content">
+                    <div class="step-list">
+                        <div class="step-item">
+                            <h4>Aniq fanlar yo'nalishi bo'yicha:</h4>
+                            <p><strong>5-7 sinflar uchun:</strong> matematika fanidan 30 test, ingliz tili fanidan 15 ta test</p>
+                        </div>
+                        <div class="step-item">
+                            <h4>Tabiiy fanlar yo'nalishi bo'yicha:</h4>
+                            <p><strong>7 sinflar uchun:</strong> tabiiy(science) fanidan 30 ta test, ingliz tili fanidan 15 test</p>
+                        </div>
+                        <div class="step-item">
+                            <h4>8-11 sinflar uchun algebra fanidan 12 ta test, geometriya fanidan 8 ta test, fizika fanidan 10 test va ingliz tili fanidan 15 test</h4>
+                            <p>Har bir fan bo'yicha minimal ball to'plash zarur</p>
+                        </div>
+                        <div class="step-item">
+                            <h4>8-11 sinflar uchun biologiya fanidan 10 test, kimyo fanidan 20 test, ingliz tili fanidan 15 test</h4>
+                            <p>Tabiiy fanlar yo'nalishi uchun maxsus test toplamasi</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="step-card fade-in">
+                <div class="step-header">
+                    <div class="step-number">3</div>
+                    <div class="step-icon">
+                        <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                    </div>
+                    <h2 class="step-title">Nomzodlarning umumiy ballari bo'yicha ro'yxatini e'lon qilish</h2>
+                </div>
+                <div class="step-content">
+                    <div class="highlight-box">
+                        <h4>Natijalar e'lon qilinishi</h4>
+                        <p>Abiturientlarning rasmiy veb-saytida e'lon qilinadi.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>    
     </section>
 
     <!-- Achievements Section -->
